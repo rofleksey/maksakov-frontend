@@ -1,0 +1,166 @@
+@import url("normalize.css");
+
+@font-face {
+    font-display: block;
+    font-family: "DIN-Next-W01-Light";
+    src: url(@/assets/fonts/DINNextW01-Light.woff) format("woff");
+}
+
+@font-face {
+    font-display: block;
+    font-family: "DIN-Next-W02-Light";
+    src: url(@/assets/fonts/DINNextW02-Light.woff) format("woff");
+}
+
+@font-face {
+    font-display: block;
+    font-family: "DIN-Next-W10-Light";
+    src: url(@/assets/fonts/DINNextW10-Light.woff) format("woff");
+}
+
+@font-face {
+    font-family: "RalewayThin";
+    src: url(@/assets/fonts/RalewayThin.woff2) format("woff2");
+}
+
+@keyframes ldx-bounce {
+    0% {
+        animation-timing-function: cubic-bezier(0.138, 0.2541, 0.2177, 0.8747);
+        transform: translate(0, 0) scaleY(1)
+    }
+
+    37% {
+        animation-timing-function: cubic-bezier(0.7679, 0.1817, 0.8401, 0.7167);
+        transform: translate(0, -39.96%) scaleY(1)
+    }
+
+    72.2% {
+        animation-timing-function: cubic-bezier(0.1045, 0.2026, 0.2224, 0.9608);
+        transform: translate(0, 0) scaleY(1)
+    }
+
+    87.2% {
+        animation-timing-function: cubic-bezier(0.7463, 0.2314, 0.8159, 0.6941);
+        transform: translate(0, 19.85%) scaleY(0.603)
+    }
+
+    100% {
+        transform: translate(0, 0) scaleY(1)
+    }
+}
+
+/** {*/
+/*  outline: 1px dashed red;*/
+/*}*/
+
+a, abbr, acronym, address, applet, b, big, blockquote, body, button, caption, center, cite, code, dd, del, dfn, div, dl, dt, em, fieldset, font, footer, form, h1, h2, h3, h4, h5, h6, header, html, i, iframe, img, ins, kbd, label, legend, li, nav, object, ol, p, pre, q, s, samp, section, small, span, strike, strong, sub, sup, table, tbody, td, tfoot, th, thead, title, tr, tt, u, ul, var {
+    background: transparent;
+    border: 0;
+    margin: 0;
+    outline: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+
+html, body, #app, main {
+    width: 100%;
+}
+
+:root {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+
+    --header-height: 140px;
+    --footer-height: 50px;
+
+    --alpha-15: 0.15;
+    --vh: 0;
+
+    --color-primary: #535151;
+    --color-secondary: #303132;
+    --color-selected: #9e7076;
+    --color-hovered: #777777;
+    --color-banner: #d3d3d3;
+
+    --rgba-primary-faint: 83, 81, 81, 0.15;
+
+    --font-raleway: normal normal normal 14px/1.4em RalewayThin, sans-serif;
+    --font-raleway-bold: normal normal bold 19px/1.4em RalewayThin, sans-serif;
+    --font-din-next: normal normal normal 14px/1.4em "DIN-Next-W10-Light", sans-serif;
+}
+
+html, body, #app {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    max-height: calc(100vh);
+    max-height: calc(var(--vh, 1vh) * 100);
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
+}
+
+img {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    user-drag: none;
+    -webkit-touch-callout: none;
+}
+
+main {
+    position: relative;
+    top: var(--header-height);
+    min-width: 980px;
+}
+
+.view-flex {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding-bottom: 100px;
+}
+
+* {
+    flex-shrink: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font: var(--font-raleway);
+    color: #1F2432;
+}
+
+a {
+    text-decoration: none !important;
+    color: #303132 !important;
+}
+
+.no-select {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+img {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    user-drag: none;
+    -webkit-touch-callout: none;
+}
