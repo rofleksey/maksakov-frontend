@@ -125,6 +125,9 @@ export interface MOrderItem {
 export interface MOrder {
   deliveryType: DeliveryType;
   notes: string;
+  name: string;
+  phone: string;
+  email: string;
   items: MOrderItem[];
 }
 

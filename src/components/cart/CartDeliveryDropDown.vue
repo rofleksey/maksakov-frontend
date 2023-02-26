@@ -23,6 +23,7 @@ const popupOpened = ref(false);
 
 const deliveryType = computed(() => cartStore.deliveryType);
 const deliveryPriceStr = computed(() => formatPrice(props.deliveryPrice));
+const freePriceStr = formatPrice(0);
 
 const deliveryTextMap = computed<{ [t: string]: DeliveryItem }>(() => ({
   [DeliveryType.MAIL]: {
@@ -32,13 +33,13 @@ const deliveryTextMap = computed<{ [t: string]: DeliveryItem }>(() => ({
   },
   [DeliveryType.COURIER]: {
     key: DeliveryType.COURIER,
-    text: `Курьерская доставка по Санкт-Петербургу - ${deliveryPriceStr.value}`,
-    subtext: null,
+    text: `Курьерская доставка - ${deliveryPriceStr.value}`,
+    subtext: "только по Санкт-Петербургу",
   },
   [DeliveryType.PICKUP]: {
     key: DeliveryType.PICKUP,
-    text: `Самовывоз (Для жителей Санкт-Петербурга) - ${deliveryPriceStr.value}`,
-    subtext: null,
+    text: `Самовывоз - ${freePriceStr}`,
+    subtext: "для жителей Санкт-Петербурга",
   }
 }))
 
@@ -117,6 +118,7 @@ const curText = computed(() => deliveryTextMap.value[deliveryType.value].text)
 
 .CartDeliveryDropDown__PopupMenu {
   position: absolute;
+  z-index: 1;
   padding: 12px 0;
   width: 100%;
   background-color: white;

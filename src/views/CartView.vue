@@ -13,6 +13,7 @@ import CartSubmit from "@/components/cart/CartSubmit.vue";
 import {useToast} from "vue-toastification";
 import {useRouter} from "vue-router";
 import Footer from "@/components/footer/Footer.vue";
+import TextField from "@/components/misc/TextField.vue";
 
 const toast = useToast();
 const router = useRouter();
@@ -23,6 +24,9 @@ const misc = computed<MMisc | null>(() => miscStore.misc);
 const cartStore = useCartStore();
 const cart = computed<CartItem[]>(() => cartStore.cart);
 const notes = computed<string>(() => cartStore.notes);
+const clientName = computed<string>(() => cartStore.name);
+const clientPhone = computed<string>(() => cartStore.phone);
+const clientEmail = computed<string>(() => cartStore.email);
 const deliveryType = computed<DeliveryType>(() => cartStore.deliveryType);
 
 const deliveryPrice = computed(() => {
@@ -41,6 +45,18 @@ const totalPriceStr = computed(() => formatPrice(totalPrice.value));
 
 const submitLoading = ref(false);
 
+function onNameInput(e: any) {
+  cartStore.setName(e.target.value);
+}
+
+function onPhoneInput(e: any) {
+  cartStore.setPhone(e.target.value);
+}
+
+function onEmailInput(e: any) {
+  cartStore.setEmail(e.target.value);
+}
+
 onMounted(() => {
   if (!misc.value) {
     fetchMisc().then((data) => {
@@ -55,8 +71,20 @@ function onSubmit() {
   if (submitLoading.value) {
     return;
   }
-  if (notes.value.trim().length === 0) {
-    toast.error("Пожалуйста, укажите свои контакты!", {
+  if (clientName.value.trim().length === 0) {
+    toast.error("Пожалуйста, укажите свое имя!", {
+      timeout: 5000,
+    });
+    return
+  }
+  if (clientPhone.value.trim().length === 0) {
+    toast.error("Пожалуйста, укажите свой телефон!", {
+      timeout: 5000,
+    });
+    return
+  }
+  if (clientEmail.value.trim().length === 0) {
+    toast.error("Пожалуйста, укажите свою электронную почту!", {
       timeout: 5000,
     });
     return
@@ -64,6 +92,9 @@ function onSubmit() {
   submitLoading.value = true;
   sendOrder({
     notes: notes.value,
+    name: clientName.value,
+    phone: clientPhone.value,
+    email: clientEmail.value,
     deliveryType: deliveryType.value,
     items: cart.value.map((item) => ({
       id: item.product.id,
@@ -121,6 +152,24 @@ function onSubmit() {
           <div>Итого</div>
           <div>{{ totalPriceStr }}</div>
         </div>
+        <TextField
+          class="CartView__TextField"
+          :value="clientName"
+          @input="onNameInput"
+          placeholder="Имя ⃰"
+        />
+        <TextField
+          class="CartView__TextField"
+          :value="clientPhone"
+          @input="onPhoneInput"
+          placeholder="Телефон ⃰"
+        />
+        <TextField
+          class="CartView__TextField"
+          :value="clientEmail"
+          @input="onEmailInput"
+          placeholder="Электронная почта ⃰"
+        />
         <CartSubmit
           class="CartView__CartSubmit"
           :loading="submitLoading"
@@ -195,6 +244,10 @@ function onSubmit() {
 
 .CartView__CartSubmit {
   margin-top: 10px;
+}
+
+.CartView__TextField {
+  height: 60px;
 }
 
 /* CartItem */

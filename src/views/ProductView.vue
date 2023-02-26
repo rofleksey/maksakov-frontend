@@ -90,6 +90,7 @@ onMounted(() => {
       <div class="ProductView__Content">
         <Gallery
           class="ProductView__Gallery"
+          :zoom="true"
           :images="galleryImages"/>
         <div class="ProductView__Info">
           <div class="ProductView__Title">

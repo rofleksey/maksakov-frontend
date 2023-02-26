@@ -41,7 +41,7 @@ const categories = computed(() => catalogStore.categories);
     </div>
     <div
       class="HeaderMenu__item"
-      style="width: 150px"
+      style="width: 160px"
       @click="router.push('/delivery')">
       доставка и оплата
     </div>
@@ -65,6 +65,7 @@ const categories = computed(() => catalogStore.categories);
   cursor: pointer;
   flex-shrink: 0;
   padding: 10px 5px;
+  font-weight: bold;
   transition: color 0.25s ease 0s, letter-spacing 0.4s ease 0s;
 }
 

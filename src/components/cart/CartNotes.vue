@@ -2,12 +2,13 @@
 import {useCartStore} from "@/stores/store";
 import {computed, ref} from "vue";
 import IconNotes from "@/components/icons/IconNotes.vue";
+import TextField from "@/components/misc/TextField.vue";
 
 const cartStore = useCartStore();
 const notes = computed(() => cartStore.notes);
 const notesActive = computed(() => notes.value.trim().length > 0)
 
-const notesOpen = ref(true);
+const notesOpen = ref(false);
 
 function onNotesInput(e: any) {
   cartStore.setNotes(e.target.value);
@@ -21,14 +22,12 @@ function onNotesInput(e: any) {
       Комментарий
     </div>
     <div class="CartNotes__Edit">
-      <div class="CartNotes__Edit__Container">
-        <textarea
-          :value="notes"
-          @input="onNotesInput"
-          placeholder="Пожалуйста, укажите ваши контакты и особые пожелания / комментарии здесь"
-          :class="{CartNotes__Edit__TextArea: true, active: notesOpen}">
-        </textarea>
-      </div>
+      <TextField
+        :value="notes"
+        @input="onNotesInput"
+        :open="notesOpen"
+        placeholder="Пожалуйста, укажите ваши контакты и особые пожелания / комментарии здесь"
+      />
     </div>
   </div>
 </template>

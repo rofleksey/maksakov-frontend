@@ -38,7 +38,8 @@ onMounted(() => {
       <Gallery
         v-if="category"
         class="CategoryView__Gallery"
-        :autoplay="category?.images?.length > 1 ? 3000 : 0"
+        :autoplay="category?.images?.length > 1 ? 5000 : 0"
+        :transition="1000"
         :images="category?.images"/>
       <Title light class="CategoryView__Title">
         {{ category?.name ?? '' }}

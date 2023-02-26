@@ -4,6 +4,8 @@ import {createPinia} from 'pinia'
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 
+import VueEasyLightbox from "vue-easy-lightbox";
+
 import App from './App.vue'
 import router from './router'
 
@@ -28,5 +30,6 @@ app.directive('click-outside', {
 app.use(createPinia());
 app.use(router);
 app.use(Toast);
+app.use(VueEasyLightbox);
 
 app.mount('#app')

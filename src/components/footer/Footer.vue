@@ -10,7 +10,11 @@ function goto(url: string) {
 </script>
 
 <template>
-  <footer class="Footer no-select">
+  <footer class="Footer">
+    <div class="Footer__Text">
+      8-981-87-000-22
+    </div>
+
     <FooterIcon>
       <IconEmail/>
     </FooterIcon>
@@ -22,6 +26,10 @@ function goto(url: string) {
     <FooterIcon @click="goto('https://www.instagram.com/maksakovcom/')">
       <IconInst/>
     </FooterIcon>
+
+    <div class="Footer__Text">
+      maksakovcom@mail.ru
+    </div>
   </footer>
 </template>
 
@@ -38,5 +46,23 @@ function goto(url: string) {
   background-color: rgb(83, 81, 81);
   width: calc(100vw - (100vw - 100%));
   padding: 5px 0;
+  animation: fadein 1s forwards;
+  animation-delay: 1s;
+  opacity: 0;
+}
+
+.Footer__Text {
+  color: white;
+  font: var(--font-din-next);
+  font-size: 16px;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 </style>

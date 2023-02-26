@@ -54,6 +54,9 @@ export const useCartStore = defineStore('cart', () => {
   const isOpen = ref(false);
   const deliveryType = ref<DeliveryType>(DeliveryType.COURIER);
   const notes = ref("");
+  const name = ref("");
+  const phone = ref("");
+  const email = ref("");
 
   function add(product: MProduct, categoryId: number) {
     const item = cart.value.find((it) => it.product.id === product.id);
@@ -84,6 +87,18 @@ export const useCartStore = defineStore('cart', () => {
     notes.value = curNotes;
   }
 
+  function setName(curName: string) {
+    name.value = curName;
+  }
+
+  function setPhone(curPhone: string) {
+    phone.value = curPhone;
+  }
+
+  function setEmail(curEmail: string) {
+    email.value = curEmail;
+  }
+
   function open() {
     isOpen.value = true;
   }
@@ -96,5 +111,8 @@ export const useCartStore = defineStore('cart', () => {
     deliveryType.value = delivery;
   }
 
-  return {cart, isOpen, deliveryType, notes, add, remove, setCount, open, close, setDeliveryType, setNotes}
+  return {
+    cart, isOpen, deliveryType, notes, name, phone, email,
+    add, remove, setCount, open, close, setDeliveryType, setNotes, setName, setPhone, setEmail
+  }
 })
