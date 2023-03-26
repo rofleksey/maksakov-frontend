@@ -29,7 +29,6 @@ function onImageClick(index: number) {
   if (props.zoom) {
     zoomVisible.value = true;
     zoomIndex.value = index;
-    console.log("!");
   }
 }
 </script>

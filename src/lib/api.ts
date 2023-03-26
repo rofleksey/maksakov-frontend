@@ -171,14 +171,27 @@ export async function fetchCategories(): Promise<MCategory[]> {
     }
   });
 
-  console.log(data);
-
-  return data.data.map((category) => ({
+  const actualCategories = data.data.map((category) => ({
     id: category.id,
     name: category.attributes.name,
     images: category.attributes.images.data.map(mapStrapiImage),
     imageMain: mapStrapiImage(category.attributes.image_main.data),
   }));
+
+  return [...actualCategories, {
+    id: SALE_CATEGORY_ID,
+    name: "распродажа",
+    images: [{
+      id: SALE_CATEGORY_ID,
+      original: SaleImg,
+      thumbnail: SaleImg
+    }],
+    imageMain: {
+      id: SALE_CATEGORY_ID,
+      original: SaleImg,
+      thumbnail: SaleImg
+    }
+  }]
 }
 
 export async function fetchProducts(categoryId: number): Promise<MProduct[]> {
@@ -196,8 +209,6 @@ export async function fetchProducts(categoryId: number): Promise<MProduct[]> {
       'Authorization': `Bearer ${token}`,
     }
   });
-
-  console.log(data);
 
   return data.data.map((product) => ({
     id: product.id,
@@ -244,6 +255,29 @@ export async function fetchCategory(id: number): Promise<MCategory> {
     name: data.data.attributes.name,
     images: data.data.attributes.images.data.map(mapStrapiImage),
     imageMain: mapStrapiImage(data.data.attributes.image_main.data),
+  }
+}
+
+export async function fetchProduct(id: number): Promise<MProduct> {
+  const {data}: { data: StrapiSingleton<StrapiProductAttr> } = await axios.get(`${BASE_API_URL}/products/${id}`, {
+    params: {
+      "publicationState": "live",
+      "populate": "*",
+    },
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    }
+  });
+
+  return {
+    id: data.data.id,
+    name: data.data.attributes.name,
+    description: data.data.attributes.description,
+    ribbon: data.data.attributes.ribbon,
+    price: data.data.attributes.price,
+    priceCrossed: data.data.attributes.price_crossed,
+    galleryImages: data.data.attributes.images_gallery.data?.map(mapStrapiImage) ?? [],
+    previewImages: data.data.attributes.images_preview.data.map(mapStrapiImage),
   }
 }
 

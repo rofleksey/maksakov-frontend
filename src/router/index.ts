@@ -1,5 +1,6 @@
 import {createRouter, createWebHashHistory} from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import {useCartStore} from "@/stores/store";
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -35,6 +36,13 @@ const router = createRouter({
       component: () => import('../views/DeliveryView.vue')
     }
   ]
+})
+
+router.beforeEach(() => {
+  const cartStore = useCartStore();
+  cartStore.restoreCart().catch((e) => {
+    console.error(e);
+  })
 })
 
 export default router

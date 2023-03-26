@@ -1,7 +1,17 @@
+<script setup lang="ts">
+interface Props {
+  href?: string;
+}
+
+const props = defineProps<Props>();
+</script>
+
 <template>
-  <div class="FooterIcon">
+  <a class="FooterIcon"
+     target=”_blank”
+     :href="href">
     <slot></slot>
-  </div>
+  </a>
 </template>
 
 <style>

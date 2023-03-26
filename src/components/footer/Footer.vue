@@ -19,11 +19,11 @@ function goto(url: string) {
       <IconEmail/>
     </FooterIcon>
 
-    <FooterIcon @click="goto('https://vk.com/maksakovcom')">
+    <FooterIcon href="https://vk.com/maksakovcom">
       <IconVK/>
     </FooterIcon>
 
-    <FooterIcon @click="goto('https://www.instagram.com/maksakovcom/')">
+    <FooterIcon href="https://www.instagram.com/maksakovcom">
       <IconInst/>
     </FooterIcon>
 
@@ -44,8 +44,9 @@ function goto(url: string) {
   gap: 25px;
   flex-wrap: nowrap;
   background-color: rgb(83, 81, 81);
-  width: calc(100vw - (100vw - 100%));
-  padding: 5px 0;
+  /*width: calc(100vw - (100vw - 100%));*/
+  width: 100%;
+  padding: 15px 0;
   animation: fadein 1s forwards;
   animation-delay: 1s;
   opacity: 0;

@@ -5,7 +5,9 @@ const router = useRouter();
 </script>
 
 <template>
-  <div class="HeaderLogo" @click="router.push('/')">
+  <RouterLink
+      to="/"
+      class="HeaderLogo">
     <img class="HeaderLogo__img" alt="logo" src="@/assets/logo.png"/>
     <div class="HeaderLogo__title">
       <div class="HeaderLogo__title__primary">
@@ -15,10 +17,10 @@ const router = useRouter();
         изделия ручной работы
       </div>
     </div>
-  </div>
+  </RouterLink>
 </template>
 
-<style scoped>
+<style>
 .HeaderLogo {
   display: flex;
   flex-direction: row;

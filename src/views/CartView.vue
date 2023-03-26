@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {computed, onMounted, ref} from "vue";
+import {computed, onMounted, ref, watch} from "vue";
 import 'vue3-carousel/dist/carousel.css'
 import type {CartItem} from "@/stores/store";
 import {useCartStore, useMiscStore} from "@/stores/store";
@@ -56,6 +56,12 @@ function onPhoneInput(e: any) {
 function onEmailInput(e: any) {
   cartStore.setEmail(e.target.value);
 }
+
+watch(cart.value, () => {
+  if (cart.value.length === 0) {
+    router.back();
+  }
+})
 
 onMounted(() => {
   if (!misc.value) {

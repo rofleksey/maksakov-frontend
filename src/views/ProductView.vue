@@ -69,7 +69,6 @@ onMounted(() => {
     });
     fetchProducts(categoryId.value).then((data) => {
       lastCategoryStore.setProducts(data);
-      console.log(data[0].galleryImages);
     })
   }
   window.scrollTo({top: 0, behavior: 'smooth'});
