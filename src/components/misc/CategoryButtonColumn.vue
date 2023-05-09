@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import CategoryButton from "@/components/misc/CategoryButton.vue";
-import type {MCategory} from "@/lib/api";
+import type {MCategory} from "@/lib/api_types";
 
 interface Props {
   categories: MCategory[];
 }
 
-const props = defineProps<Props>()
+const props = defineProps<Props>();
 </script>
 
 <template>

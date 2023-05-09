@@ -6,7 +6,7 @@ const router = useRouter();
 const cartStore = useCartStore();
 
 function onClick() {
-  router.push('/cart');
+  router.push("/cart");
   cartStore.close();
 }
 </script>
@@ -19,14 +19,15 @@ function onClick() {
 
 <style scoped>
 .OpenCartButton {
-  font: var(--font-din-next);
-  font-size: 14px;
-  color: white;
-  background-color: #9E7076;
-  cursor: pointer;
-  padding: 8px 16px;
-  width: 100%;
-  transition: background-color .3s ease-in-out, color .3s ease-in-out, border-radius .3s ease;
+    font: var(--font-din-next);
+    font-size: 14px;
+    color: white;
+    background-color: #9e7076;
+    cursor: pointer;
+    padding: 8px 16px;
+    width: 100%;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+    border-radius 0.3s ease;
 }
 
 .OpenCartButton:hover {

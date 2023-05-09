@@ -3,33 +3,25 @@ import IconVK from "@/components/icons/IconVK.vue";
 import IconInst from "@/components/icons/IconInst.vue";
 import FooterIcon from "@/components/footer/FooterIcon.vue";
 import IconEmail from "@/components/icons/IconEmail.vue";
-
-function goto(url: string) {
-  window.location.href = url;
-}
 </script>
 
 <template>
   <footer class="Footer">
-    <div class="Footer__Text">
-      8-981-87-000-22
-    </div>
+    <div class="Footer__Text">8-981-87-000-22</div>
 
     <FooterIcon>
-      <IconEmail/>
+        <IconEmail/>
     </FooterIcon>
 
     <FooterIcon href="https://vk.com/maksakovcom">
-      <IconVK/>
+        <IconVK/>
     </FooterIcon>
 
     <FooterIcon href="https://www.instagram.com/maksakovcom">
-      <IconInst/>
+        <IconInst/>
     </FooterIcon>
 
-    <div class="Footer__Text">
-      maksakovcom@mail.ru
-    </div>
+      <div class="Footer__Text">maksakovcom@mail.ru</div>
   </footer>
 </template>
 

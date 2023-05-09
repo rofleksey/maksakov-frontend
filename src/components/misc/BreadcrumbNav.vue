@@ -7,29 +7,27 @@ interface Segment {
 }
 
 interface Props {
-  segments: Segment[]
+  segments: Segment[];
 }
 
 const props = defineProps<Props>();
 
-const slashRef = ref("/")
+const slashRef = ref("/");
 </script>
 
 <template>
   <div class="Breadcrumb no-select">
-    <template v-for="(segment, index) in props.segments">
+      <template v-for="(segment, index) in props.segments" :key="segment.text">
       <span
-        v-if="index === props.segments.length - 1"
-        class="Breadcrumb__link active">
+              v-if="index === props.segments.length - 1"
+              class="Breadcrumb__link active"
+      >
         {{ segment.text }}
       </span>
-      <RouterLink
-        v-else
-        :to="segment.path"
-        class="Breadcrumb__link">
-        {{ segment.text }}
-      </RouterLink>
-      <span v-if="index !== props.segments.length - 1">{{ slashRef }}</span>
+          <RouterLink v-else :to="segment.path" class="Breadcrumb__link">
+              {{ segment.text }}
+          </RouterLink>
+          <span v-if="index !== props.segments.length - 1">{{ slashRef }}</span>
     </template>
   </div>
 </template>

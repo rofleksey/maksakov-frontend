@@ -3,7 +3,7 @@ import {useCartStore} from "@/stores/store";
 import {computed, ref} from "vue";
 import {formatPrice} from "@/lib/misc";
 import IconDropDown from "@/components/icons/IconDropDown.vue";
-import {DeliveryType} from "@/lib/api";
+import {DeliveryType} from "@/lib/api_types";
 
 interface Props {
   deliveryPrice: number;
@@ -40,33 +40,44 @@ const deliveryTextMap = computed<{ [t: string]: DeliveryItem }>(() => ({
     key: DeliveryType.PICKUP,
     text: `Самовывоз - ${freePriceStr}`,
     subtext: "для жителей Санкт-Петербурга",
-  }
-}))
+  },
+}));
 
-const curText = computed(() => deliveryTextMap.value[deliveryType.value].text)
+const curText = computed(() => deliveryTextMap.value[deliveryType.value].text);
 </script>
 
 <template>
-  <div class="CartDeliveryDropDown no-select" v-click-outside="() => popupOpened = false"
-       @click="popupOpened = !popupOpened">
-    <div class="CartDeliveryDropDown__Container">
+    <div
+            class="CartDeliveryDropDown no-select"
+            v-click-outside="() => (popupOpened = false)"
+            @click="popupOpened = !popupOpened"
+    >
+        <div class="CartDeliveryDropDown__Container">
       <span class="CartDeliveryDropDown__CurText">
         {{ curText }}
       </span>
-      <span class="CartDeliveryDropDown__DropDown">
-        <IconDropDown :class="{CartDeliveryDropDown__DropDown__Icon: true, opened: popupOpened}"/>
+            <span class="CartDeliveryDropDown__DropDown">
+        <IconDropDown
+                :class="{
+            CartDeliveryDropDown__DropDown__Icon: true,
+            opened: popupOpened,
+          }"
+        />
       </span>
     </div>
     <div class="CartDeliveryDropDown__PopupMenu" v-if="popupOpened">
-      <div
-        :class="{CartDeliveryDropDown__PopupMenu__Item: true, selected: item.key === deliveryType}"
-        v-for="item in Object.values(deliveryTextMap)"
-        :key="item.key"
-        @click="cartStore.setDeliveryType(item.key)"
-      >
-        <div>{{ item.text }}</div>
-        <div v-if="item.subtext" class="subtext">{{ item.subtext }}</div>
-      </div>
+        <div
+                :class="{
+          CartDeliveryDropDown__PopupMenu__Item: true,
+          selected: item.key === deliveryType,
+        }"
+                v-for="item in Object.values(deliveryTextMap)"
+                :key="item.key"
+                @click="cartStore.setDeliveryType(item.key)"
+        >
+            <div>{{ item.text }}</div>
+            <div v-if="item.subtext" class="subtext">{{ item.subtext }}</div>
+        </div>
     </div>
   </div>
 </template>

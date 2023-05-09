@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Separator from "@/components/misc/Separator.vue";
-import type {MProduct} from "@/lib/api";
+import Separator from "@/components/misc/SeparatorLine.vue";
+import type {MProduct} from "@/lib/api_types";
 import {computed, ref} from "vue";
 import {useRouter} from "vue-router";
 import {formatPrice} from "@/lib/misc";
@@ -8,7 +8,7 @@ import {formatPrice} from "@/lib/misc";
 const router = useRouter();
 
 interface Props {
-  product: MProduct
+  product: MProduct;
   categoryId: number;
 }
 
@@ -16,39 +16,55 @@ const props = defineProps<Props>();
 
 const curIndex = ref(0);
 
-const priceStr = computed(() => formatPrice(props.product.price))
+const priceStr = computed(() => formatPrice(props.product.price));
 </script>
 
 <template>
-  <div
-    class="ProductCard no-select"
-    @mouseover="curIndex = 1"
-    @mouseleave="curIndex = 0"
-    @click="router.push(`/product?productId=${props.product.id}&categoryId=${props.categoryId}`)"
-  >
-    <div class="ProductCard__Ribbon" v-if="props.product.ribbon">
-      {{ props.product.ribbon }}
-    </div>
-    <div class="ProductCard__img-container">
-      <img
-        :class="{active: curIndex === 1}"
-        v-if="props.product.previewImages.length === 1"
-        :src="props.product.previewImages[0].medium ?? props.product.previewImages[0].original"
-        :alt="props.product.name"/>
-      <Transition name='ProductCard' tag='div' v-else>
-        <img
-          v-if="curIndex === 0"
-          :src="props.product.previewImages[0].medium ?? props.product.previewImages[0].original"
-          :alt="props.product.name"/>
-        <img
-          v-else
-          class="active"
-          :src="props.product.previewImages[1].medium ?? props.product.previewImages[1].original"
-          :alt="props.product.name"/>
+    <div
+            class="ProductCard no-select"
+            @mouseover="curIndex = 1"
+            @mouseleave="curIndex = 0"
+            @click="
+      router.push(
+        `/product?productId=${props.product.id}&categoryId=${props.categoryId}`
+      )
+    "
+    >
+        <div class="ProductCard__Ribbon" v-if="props.product.ribbon">
+            {{ props.product.ribbon }}
+        </div>
+        <div class="ProductCard__img-container">
+            <img
+                    :class="{ active: curIndex === 1 }"
+                    v-if="props.product.previewImages.length === 1"
+                    :src="
+          props.product.previewImages[0].medium ??
+          props.product.previewImages[0].original
+        "
+                    :alt="props.product.name"
+            />
+            <Transition name="ProductCard" tag="div" v-else>
+                <img
+                        v-if="curIndex === 0"
+                        :src="
+            props.product.previewImages[0].medium ??
+            props.product.previewImages[0].original
+          "
+                        :alt="props.product.name"
+                />
+                <img
+                        v-else
+                        class="active"
+                        :src="
+            props.product.previewImages[1].medium ??
+            props.product.previewImages[1].original
+          "
+                        :alt="props.product.name"
+                />
       </Transition>
     </div>
     <div class="ProductCard__name">{{ props.product.name }}</div>
-    <Separator class="ProductCard__Separator"/>
+        <Separator class="ProductCard__Separator"/>
     <div class="ProductCard__price">{{ priceStr }}</div>
   </div>
 </template>
@@ -102,19 +118,18 @@ const priceStr = computed(() => formatPrice(props.product.price))
 }
 
 .ProductCard__Ribbon {
-  position: absolute;
-  left: 1px;
-  top: 1px;
-  z-index: 1;
-  background-color: #9E7076;
-  padding: 2px 12px;
-  font: var(--font-din-next);
-  color: white;
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    z-index: 1;
+    background-color: #9e7076;
+    padding: 2px 12px;
+    font: var(--font-din-next);
+    color: white;
 }
 
 .ProductCard-enter-active,
 .ProductCard-leave-active {
-
 }
 
 .ProductCard-enter-from {

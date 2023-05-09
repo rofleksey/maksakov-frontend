@@ -1,17 +1,16 @@
 <script setup lang="ts">
 import {computed, onMounted} from "vue";
-import type {MCategory, MProduct} from "@/lib/api"
-import {fetchCategory, fetchProducts} from "@/lib/api"
+import type {MCategory, MProduct} from "@/lib/api_types";
+import {fetchCategory, fetchProducts} from "@/lib/api";
 import {useRoute} from "vue-router";
-import 'vue3-carousel/dist/carousel.css'
 import {useLastCategoryStore} from "@/stores/store";
-import Breadcrumb from "@/components/misc/Breadcrumb.vue";
-import Pagination from "@/components/misc/Pagination.vue";
-import Gallery from "@/components/misc/Gallery.vue";
+import Breadcrumb from "@/components/misc/BreadcrumbNav.vue";
+import Pagination from "@/components/misc/PaginationButtons.vue";
+import Gallery from "@/components/misc/ImageGallery.vue";
 import {formatPrice} from "@/lib/misc";
 import AddToCartButton from "@/components/cart/AddToCartButton.vue";
-import Markdown from "@/components/misc/Markdown.vue";
-import Footer from "@/components/footer/Footer.vue";
+import Markdown from "@/components/misc/MarkDown.vue";
+import Footer from "@/components/footer/SiteFooter.vue";
 
 const route = useRoute();
 const productId = computed(() => Number(route.query.productId));
@@ -20,8 +19,12 @@ const categoryId = computed(() => Number(route.query.categoryId));
 const lastCategoryStore = useLastCategoryStore();
 const category = computed<MCategory | null>(() => lastCategoryStore.category);
 const products = computed<MProduct[]>(() => lastCategoryStore.products);
-const product = computed(() => products.value.find((p) => p.id === productId.value));
-const productIndex = computed(() => products.value.findIndex((p) => p.id === productId.value));
+const product = computed(() =>
+  products.value.find((p) => p.id === productId.value)
+);
+const productIndex = computed(() =>
+  products.value.findIndex((p) => p.id === productId.value)
+);
 
 const prevProductLink = computed(() => {
   if (productIndex.value === -1 || productIndex.value === 0) {
@@ -32,7 +35,10 @@ const prevProductLink = computed(() => {
 });
 
 const nextProductLink = computed(() => {
-  if (productIndex.value === -1 || productIndex.value === products.value.length - 1) {
+  if (
+    productIndex.value === -1 ||
+    productIndex.value === products.value.length - 1
+  ) {
     return null;
   }
   const id = products.value[productIndex.value + 1].id;
@@ -47,21 +53,29 @@ const galleryImages = computed(() => {
     return product.value.galleryImages;
   }
   return product.value.previewImages;
-})
+});
 
-const breadcrumbSegments = computed(() => ([{
-  text: 'Главная',
-  path: '/'
-}, {
-  text: category.value?.name ?? '',
-  path: `/category?id=${categoryId.value}`
-}, {
-  text: product.value?.name ?? '',
-  path: '',
-}]))
+const breadcrumbSegments = computed(() => [
+  {
+    text: "Главная",
+    path: "/",
+  },
+  {
+    text: category.value?.name ?? "",
+    path: `/category?id=${categoryId.value}`,
+  },
+  {
+    text: product.value?.name ?? "",
+    path: "",
+  },
+]);
 
 onMounted(() => {
-  if (!category.value || products.value.length === 0 || category.value?.id != categoryId.value) {
+  if (
+    !category.value ||
+    products.value.length === 0 ||
+    category.value?.id != categoryId.value
+  ) {
     lastCategoryStore.reset();
 
     fetchCategory(categoryId.value).then((category) => {
@@ -69,47 +83,49 @@ onMounted(() => {
     });
     fetchProducts(categoryId.value).then((data) => {
       lastCategoryStore.setProducts(data);
-    })
+    });
   }
-  window.scrollTo({top: 0, behavior: 'smooth'});
-})
+  window.scrollTo({top: 0, behavior: "smooth"});
+});
 </script>
 
 <template>
   <div class="view-flex">
     <div class="ProductView__Column">
-      <nav class="ProductView__Nav">
-        <Breadcrumb
-          class="ProductView__Breadcrumb"
-          :segments="breadcrumbSegments"/>
-        <Pagination
-          :prev-link="prevProductLink"
-          :next-link="nextProductLink"/>
-      </nav>
+        <nav class="ProductView__Nav">
+            <Breadcrumb
+                    class="ProductView__Breadcrumb"
+                    :segments="breadcrumbSegments"
+            />
+            <Pagination :prev-link="prevProductLink" :next-link="nextProductLink"/>
+        </nav>
       <div class="ProductView__Content">
-        <Gallery
-          class="ProductView__Gallery"
-          :zoom="true"
-          :images="galleryImages"/>
+          <Gallery
+                  class="ProductView__Gallery"
+                  :zoom="true"
+                  :images="galleryImages"
+          />
         <div class="ProductView__Info">
           <div class="ProductView__Title">
-            {{ product?.name ?? '' }}
+              {{ product?.name ?? "" }}
           </div>
           <div class="ProductView__Price">
             {{ formatPrice(product?.price ?? 0) }}
           </div>
-          <AddToCartButton
-            v-if="product"
-            :product="product"
-            :categoryId="categoryId"/>
+            <AddToCartButton
+                    v-if="product"
+                    :product="product"
+                    :categoryId="categoryId"
+            />
         </div>
       </div>
-      <Markdown
-        class="ProductView__Description"
-        :text="product?.description ?? ''"/>
+        <Markdown
+                class="ProductView__Description"
+                :text="product?.description ?? ''"
+        />
     </div>
 
-    <Footer/>
+      <Footer/>
   </div>
 </template>
 

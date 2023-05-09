@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import Cover from "@/components/misc/Cover.vue";
-import Banner from "@/components/misc/Banner.vue";
-import Title from "@/components/misc/Title.vue";
+import Cover from "@/components/misc/SiteCover.vue";
+import Banner from "@/components/misc/SiteBanner.vue";
+import Title from "@/components/misc/SiteTitle.vue";
 import {computed, onMounted} from "vue";
-import {fetchCategories, fetchMisc} from "@/lib/api"
+import {fetchCategories, fetchMisc} from "@/lib/api";
 import CategoryButtonColumn from "@/components/misc/CategoryButtonColumn.vue";
-import Separator from "@/components/misc/Separator.vue";
+import Separator from "@/components/misc/SeparatorLine.vue";
 import {useCatalogStore, useMiscStore} from "@/stores/store";
-import Markdown from "@/components/misc/Markdown.vue";
-import Footer from "@/components/footer/Footer.vue";
+import Markdown from "@/components/misc/MarkDown.vue";
+import Footer from "@/components/footer/SiteFooter.vue";
 
 const catalogStore = useCatalogStore();
 const categories = computed(() => catalogStore.categories);
@@ -28,28 +28,29 @@ onMounted(() => {
       miscStore.setMisc(data);
     });
   }
-  window.scrollTo({top: 0, behavior: 'smooth'});
-})
+  window.scrollTo({top: 0, behavior: "smooth"});
+});
 </script>
 
 <template>
   <div class="view-flex">
-    <Cover/>
+      <Cover/>
     <Banner>
       <span>без него, как без рук</span>
     </Banner>
     <Title class="HomeView__Maksakov">
       <span>"МАКСАКОВ"</span>
     </Title>
-    <Separator class="HomeView__Maksakov-separator"/>
+      <Separator class="HomeView__Maksakov-separator"/>
     <div class="HomeView__content">
-      <CategoryButtonColumn :categories="categories"/>
-      <Markdown
-        class="HomeView__Markdown"
-        :text="misc?.homeDescription ?? ''"/>
+        <CategoryButtonColumn :categories="categories"/>
+        <Markdown
+                class="HomeView__Markdown"
+                :text="misc?.homeDescription ?? ''"
+        />
     </div>
 
-    <Footer/>
+      <Footer/>
   </div>
 </template>
 

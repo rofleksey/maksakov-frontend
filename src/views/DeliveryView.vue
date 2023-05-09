@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import {computed, onMounted} from "vue";
-import type {MMisc} from "@/lib/api"
-import {fetchMisc} from "@/lib/api"
+import type {MMisc} from "@/lib/api_types";
+import {fetchMisc} from "@/lib/api";
 import {useMiscStore} from "@/stores/store";
-import Separator from "@/components/misc/Separator.vue";
-import Markdown from "@/components/misc/Markdown.vue";
-import Footer from "@/components/footer/Footer.vue";
+import Separator from "@/components/misc/SeparatorLine.vue";
+import Markdown from "@/components/misc/MarkDown.vue";
+import Footer from "@/components/footer/SiteFooter.vue";
 
 const miscStore = useMiscStore();
 const misc = computed<MMisc | null>(() => miscStore.misc);
@@ -16,22 +16,21 @@ onMounted(() => {
       miscStore.setMisc(data);
     });
   }
-  window.scrollTo({top: 0, behavior: 'smooth'});
-})
+  window.scrollTo({top: 0, behavior: "smooth"});
+});
 </script>
 
 <template>
   <div class="view-flex">
-    <div class="DeliveryView__Column">
-      <div class="DeliveryView__Cover">
-        <img alt="cover" src="../assets/delivery.jpg"/>
+      <div class="DeliveryView__Column">
+          <div class="DeliveryView__Cover">
+              <img alt="cover" src="../assets/delivery.jpg"/>
+          </div>
+          <Separator class="DeliveryView__Separator"/>
+          <Markdown :text="misc?.deliveryDescription ?? ''"/>
       </div>
-      <Separator class="DeliveryView__Separator"/>
-      <Markdown
-        :text="misc?.deliveryDescription ?? ''"/>
-    </div>
 
-    <Footer/>
+      <Footer/>
   </div>
 </template>
 

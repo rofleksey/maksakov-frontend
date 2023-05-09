@@ -12,7 +12,7 @@ const props = defineProps<Props>();
 
 function decreaseCount() {
   if (props.item.count === 1) {
-    return
+    return;
   }
   cartStore.setCount(props.item.product.id, props.item.count - 1);
 }
@@ -23,18 +23,27 @@ function increaseCount() {
 </script>
 
 <template>
-  <div class="CartCounter no-select">
-    <span :class="{CartCounter__button: true, CartCounter__minus: true, active: props.item.count > 1}"
-          @click="decreaseCount">
+    <div class="CartCounter no-select">
+    <span
+            :class="{
+        CartCounter__button: true,
+        CartCounter__minus: true,
+        active: props.item.count > 1,
+      }"
+            @click="decreaseCount"
+    >
       -
     </span>
-    <span class="CartCounter__count">
+        <span class="CartCounter__count">
       {{ item.count }}
     </span>
-    <span class="CartCounter__button CartCounter__plus active" @click="increaseCount">
+        <span
+                class="CartCounter__button CartCounter__plus active"
+                @click="increaseCount"
+        >
       +
     </span>
-  </div>
+    </div>
 </template>
 
 <style scoped>
@@ -77,9 +86,10 @@ function increaseCount() {
   font-weight: bold;
 }
 
-.CartCounter__button, .CartCounter__count {
-  padding: 0 5px;
-  display: inline-block;
+.CartCounter__button,
+.CartCounter__count {
+    padding: 0 5px;
+    display: inline-block;
 }
 
 .CartCounter__count {

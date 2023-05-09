@@ -1,30 +1,30 @@
-import {createApp} from 'vue'
-import {createPinia} from 'pinia'
+import {createApp} from "vue";
+import {createPinia} from "pinia";
 
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 
 import VueEasyLightbox from "vue-easy-lightbox";
 
-import App from './App.vue'
-import router from './router'
+import App from "./App.vue";
+import router from "./router";
 
-import './assets/main.css'
+import "./assets/main.css";
 
-const app = createApp(App)
+const app = createApp(App);
 
-app.directive('click-outside', {
+app.directive("click-outside", {
   beforeMount: function (element, binding) {
     element.clickOutsideEvent = function (event: MouseEvent) {
       if (!(element === event.target || element.contains(event.target))) {
         binding.value();
       }
     };
-    document.body.addEventListener('click', element.clickOutsideEvent);
+    document.body.addEventListener("click", element.clickOutsideEvent);
   },
   unmounted: function (element) {
-    document.body.removeEventListener('click', element.clickOutsideEvent);
-  }
+    document.body.removeEventListener("click", element.clickOutsideEvent);
+  },
 });
 
 app.use(createPinia());
@@ -32,4 +32,4 @@ app.use(router);
 app.use(Toast);
 app.use(VueEasyLightbox);
 
-app.mount('#app')
+app.mount("#app");

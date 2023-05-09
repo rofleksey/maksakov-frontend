@@ -5,13 +5,13 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   light: false,
-})
+});
 </script>
 
 <template>
-  <div :class="{Title: true, light: props.light, heavy: !props.light}">
-    <slot></slot>
-  </div>
+    <div :class="{ Title: true, light: props.light, heavy: !props.light }">
+        <slot></slot>
+    </div>
 </template>
 
 <style scoped>

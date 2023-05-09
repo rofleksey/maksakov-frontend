@@ -10,7 +10,11 @@ const cartStore = useCartStore();
 const cart = computed(() => cartStore.cart);
 const isOpen = computed(() => cartStore.isOpen);
 
-const totalPrice = computed(() => formatPrice(cart.value.reduce((sum, item) => sum + item.product.price * item.count, 0)))
+const totalPrice = computed(() =>
+  formatPrice(
+    cart.value.reduce((sum, item) => sum + item.product.price * item.count, 0)
+  )
+);
 </script>
 
 <template>
@@ -19,27 +23,26 @@ const totalPrice = computed(() => formatPrice(cart.value.reduce((sum, item) => s
       <div class="CartPopup__curtain" @click="cartStore.close"></div>
       <div class="CartPopup__body">
         <div class="CartPopup__header">
-          <IconNext class="CartPopup__CloseButton" @click="cartStore.close"/>
+            <IconNext class="CartPopup__CloseButton" @click="cartStore.close"/>
           <span class="CartPopup__header__text">Корзина</span>
         </div>
         <div class="CartPopup__items" v-if="cart.length > 0">
           <TransitionGroup name="CartItemSmall">
-            <CartCardSmall
-              v-for="item in cart"
-              :item="item"
-              :key="item.product.id"/>
+              <CartCardSmall
+                      v-for="item in cart"
+                      :item="item"
+                      :key="item.product.id"
+              />
           </TransitionGroup>
         </div>
         <section class="CartPopup__PriceSection" v-if="cart.length > 0">
-          <div class="CartPopup__PriceHeader">
-            Сумма
-          </div>
+            <div class="CartPopup__PriceHeader">Сумма</div>
           <div class="CartPopup__PriceValue">
             {{ totalPrice }}
           </div>
         </section>
         <div class="CartCard__Submit" v-if="cart.length > 0">
-          <OpenCartButton class="CartCard__Submit__Button"/>
+            <OpenCartButton class="CartCard__Submit__Button"/>
         </div>
         <div class="CartCard__Empty" v-if="cart.length === 0">
           Корзина пуста
@@ -129,12 +132,12 @@ const totalPrice = computed(() => formatPrice(cart.value.reduce((sum, item) => s
 }
 
 .CartCard__Submit {
-  height: 114px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 34px;
-  border-top: 1px solid #D3D3D3;
+    height: 114px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 34px;
+    border-top: 1px solid #d3d3d3;
 }
 
 .CartCard__Empty {

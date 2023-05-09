@@ -6,7 +6,7 @@ import TextField from "@/components/misc/TextField.vue";
 
 const cartStore = useCartStore();
 const notes = computed(() => cartStore.notes);
-const notesActive = computed(() => notes.value.trim().length > 0)
+const notesActive = computed(() => notes.value.trim().length > 0);
 
 const notesOpen = ref(false);
 
@@ -16,19 +16,26 @@ function onNotesInput(e: any) {
 </script>
 
 <template>
-  <div class="CartNotes">
-    <div :class="{CartNotes__Button:true, 'no-select': true, active: notesActive}" @click="notesOpen = !notesOpen">
-      <IconNotes class="CartNotes__Icon"/>
-      Комментарий
-    </div>
-    <div class="CartNotes__Edit">
-      <TextField
-        :value="notes"
-        @input="onNotesInput"
-        :open="notesOpen"
-        placeholder="Пожалуйста, укажите ваши контакты и особые пожелания / комментарии здесь"
-      />
-    </div>
+    <div class="CartNotes">
+        <div
+                :class="{
+        CartNotes__Button: true,
+        'no-select': true,
+        active: notesActive,
+      }"
+                @click="notesOpen = !notesOpen"
+        >
+            <IconNotes class="CartNotes__Icon"/>
+            Комментарий
+        </div>
+        <div class="CartNotes__Edit">
+            <TextField
+                    :value="notes"
+                    @input="onNotesInput"
+                    :open="notesOpen"
+                    placeholder="Пожалуйста, укажите ваши контакты и особые пожелания / комментарии здесь"
+            />
+        </div>
   </div>
 </template>
 

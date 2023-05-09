@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import {RouterView} from 'vue-router'
-import Header from "@/components/header/Header.vue";
+import {RouterView} from "vue-router";
+import SiteHeader from "@/components/header/SiteHeader.vue";
 import {onMounted, onUnmounted} from "vue";
 import CartPopup from "@/components/cart/CartPopup.vue";
 
@@ -19,14 +19,14 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <Header/>
+    <SiteHeader/>
 
-  <CartPopup/>
+    <CartPopup/>
 
   <main id="main">
     <RouterView v-slot="{ Component, route }">
       <Transition name="App" appear>
-        <component :is="Component" :key="route.fullPath"/>
+          <component :is="Component" :key="route.fullPath"/>
       </Transition>
     </RouterView>
   </main>

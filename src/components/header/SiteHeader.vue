@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import HeaderLogo from "@/components/header/HeaderLogo.vue";
 import HeaderMenu from "@/components/header/HeaderMenu.vue";
-import IconCart from "@/components/icons/IconCart.vue";</script>
+import IconCart from "@/components/icons/IconCart.vue";
+</script>
 
 <template>
   <header class="Header no-select">
-    <div class="Header__container">
-      <HeaderLogo/>
-      <HeaderMenu/>
-      <IconCart class="Header__IconCart"/>
-    </div>
+      <div class="Header__container">
+          <HeaderLogo/>
+          <HeaderMenu/>
+          <IconCart class="Header__IconCart"/>
+      </div>
   </header>
 </template>
 

@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import {computed, onMounted} from "vue";
-import type {MCategory, MProduct} from "@/lib/api"
-import {fetchCategory, fetchProducts} from "@/lib/api"
+import type {MCategory, MProduct} from "@/lib/api_types";
+import {fetchCategory, fetchProducts} from "@/lib/api";
 import {useRoute} from "vue-router";
-import 'vue3-carousel/dist/carousel.css'
-import Title from "@/components/misc/Title.vue";
+import Title from "@/components/misc/SiteTitle.vue";
 import ProductCard from "@/components/misc/ProductCard.vue";
-import Gallery from "@/components/misc/Gallery.vue";
+import Gallery from "@/components/misc/ImageGallery.vue";
 import {useLastCategoryStore} from "@/stores/store";
-import Footer from "@/components/footer/Footer.vue";
+import Footer from "@/components/footer/SiteFooter.vue";
 
 const route = useRoute();
 const categoryId = computed(() => Number(route.query.id));
@@ -18,7 +17,11 @@ const category = computed<MCategory | null>(() => lastCategoryStore.category);
 const products = computed<MProduct[]>(() => lastCategoryStore.products);
 
 onMounted(() => {
-  if (!category.value || products.value.length === 0 || category.value?.id != categoryId.value) {
+  if (
+    !category.value ||
+    products.value.length === 0 ||
+    category.value?.id != categoryId.value
+  ) {
     lastCategoryStore.reset();
 
     fetchCategory(categoryId.value).then((category) => {
@@ -26,23 +29,24 @@ onMounted(() => {
     });
     fetchProducts(categoryId.value).then((data) => {
       lastCategoryStore.setProducts(data);
-    })
+    });
   }
-  window.scrollTo({top: 0, behavior: 'smooth'});
-})
+  window.scrollTo({top: 0, behavior: "smooth"});
+});
 </script>
 
 <template>
   <div class="view-flex">
     <div class="CategoryView__Column">
-      <Gallery
-        v-if="category"
-        class="CategoryView__Gallery"
-        :autoplay="category?.images?.length > 1 ? 5000 : 0"
-        :transition="1000"
-        :images="category?.images"/>
+        <Gallery
+                v-if="category"
+                class="CategoryView__Gallery"
+                :autoplay="category?.images?.length > 1 ? 5000 : 0"
+                :transition="1000"
+                :images="category?.images ?? []"
+        />
       <Title light class="CategoryView__Title">
-        {{ category?.name ?? '' }}
+          {{ category?.name ?? "" }}
       </Title>
       <div class="CategoryView__CategoryList">
         <ProductCard
@@ -54,7 +58,7 @@ onMounted(() => {
       </div>
     </div>
 
-    <Footer/>
+      <Footer/>
   </div>
 </template>
 
@@ -79,10 +83,10 @@ onMounted(() => {
 }
 
 .CategoryView__CategoryList {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  align-items: start;
-  width: 956px;;
-  gap: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: start;
+    width: 956px;
+    gap: 15px;
 }
 </style>

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import Title from "@/components/misc/Title.vue";
+import Title from "@/components/misc/SiteTitle.vue";
 import {computed, onMounted} from "vue";
-import type {MCategory} from "@/lib/api"
-import {fetchCategories} from "@/lib/api"
-import Separator from "@/components/misc/Separator.vue";
+import type {MCategory} from "@/lib/api_types";
+import {fetchCategories} from "@/lib/api";
+import Separator from "@/components/misc/SeparatorLine.vue";
 import CategoryButton from "@/components/misc/CategoryButton.vue";
 import {useCatalogStore} from "@/stores/store";
-import Footer from "@/components/footer/Footer.vue";
+import Footer from "@/components/footer/SiteFooter.vue";
 
 const catalogStore = useCatalogStore();
 const categories = computed<MCategory[]>(() => catalogStore.categories);
@@ -17,7 +17,7 @@ onMounted(() => {
       catalogStore.setCategories(data);
     });
   }
-  window.scrollTo({top: 0, behavior: 'smooth'});
+  window.scrollTo({top: 0, behavior: "smooth"});
 });
 </script>
 
@@ -27,7 +27,7 @@ onMounted(() => {
       <span>Ассортимент</span>
     </Title>
     <div class="CatalogView__CategoryContainer">
-      <Separator class="CatalogView__Title-separator"/>
+        <Separator class="CatalogView__Title-separator"/>
       <div class="CatalogView__CategoryList">
         <CategoryButton
           v-for="category in categories"
@@ -40,7 +40,7 @@ onMounted(() => {
       </div>
     </div>
 
-    <Footer/>
+      <Footer/>
   </div>
 </template>
 

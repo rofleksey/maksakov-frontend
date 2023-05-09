@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 import IconPrev from "@/components/icons/IconPrev.vue";
 import IconNext from "@/components/icons/IconNext.vue";
 
@@ -14,19 +13,21 @@ const props = defineProps<Props>();
 <template>
   <div class="Pagination no-select">
     <component
-      :class="{Pagination__prev: true, disabled: props.prevLink === null}"
-      :is="props.prevLink ? 'router-link' : 'span'"
-      :to="prevLink">
-      <IconPrev/>
-      Назад
+            :class="{ Pagination__prev: true, disabled: props.prevLink === null }"
+            :is="props.prevLink ? 'router-link' : 'span'"
+            :to="prevLink"
+    >
+        <IconPrev/>
+        Назад
     </component>
-    <component
-      :class="{Pagination__next: true, disabled: props.nextLink === null}"
-      :is="props.nextLink ? 'router-link' : 'span'"
-      :to="nextLink">
-      Вперед
-      <IconNext/>
-    </component>
+      <component
+              :class="{ Pagination__next: true, disabled: props.nextLink === null }"
+              :is="props.nextLink ? 'router-link' : 'span'"
+              :to="nextLink"
+      >
+          Вперед
+          <IconNext/>
+      </component>
   </div>
 </template>
 
@@ -38,12 +39,14 @@ const props = defineProps<Props>();
   font: var(--font-din-next);
 }
 
-.Pagination__prev.disabled, .Pagination__next.disabled {
-  opacity: 0.6;
+.Pagination__prev.disabled,
+.Pagination__next.disabled {
+    opacity: 0.6;
 }
 
-.Pagination__prev svg, .Pagination__next svg {
-  transform: rotate(0deg) translateY(3.5px);
+.Pagination__prev svg,
+.Pagination__next svg {
+    transform: rotate(0deg) translateY(3.5px);
 }
 
 .Pagination__next::before {

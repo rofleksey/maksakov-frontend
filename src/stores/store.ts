@@ -1,10 +1,11 @@
-import {ref} from 'vue'
-import {defineStore} from 'pinia'
-import type {MCategory, MMisc, MProduct} from "@/lib/api";
-import {DeliveryType, fetchProduct} from "@/lib/api";
+import {ref} from "vue";
+import {defineStore} from "pinia";
+import type {MCategory, MMisc, MProduct} from "@/lib/api_types";
+import {DeliveryType} from "@/lib/api_types";
+import {fetchProduct} from "@/lib/api";
 
-const CART_VERSION = "v1"
-const CART_KEY = "maksakov_cart"
+const CART_VERSION = "v1";
+const CART_KEY = "maksakov_cart";
 
 export interface CartItem {
   product: MProduct;
@@ -28,27 +29,27 @@ interface SerializedCart {
   items: SerializedCartItem[];
 }
 
-export const useMiscStore = defineStore('misc', () => {
+export const useMiscStore = defineStore("misc", () => {
   const misc = ref<MMisc | null>(null);
 
   function setMisc(data: MMisc) {
     misc.value = data;
   }
 
-  return {misc, setMisc}
-})
+  return {misc, setMisc};
+});
 
-export const useCatalogStore = defineStore('catalog', () => {
+export const useCatalogStore = defineStore("catalog", () => {
   const categories = ref<MCategory[]>([]);
 
   function setCategories(data: MCategory[]) {
     categories.value = data;
   }
 
-  return {categories, setCategories}
-})
+  return {categories, setCategories};
+});
 
-export const useLastCategoryStore = defineStore('last_category', () => {
+export const useLastCategoryStore = defineStore("last_category", () => {
   const category = ref<MCategory | null>(null);
   const products = ref<MProduct[]>([]);
 
@@ -61,14 +62,14 @@ export const useLastCategoryStore = defineStore('last_category', () => {
   }
 
   function reset() {
-    category.value = null
+    category.value = null;
     products.value = [];
   }
 
-  return {category, products, setCategory, setProducts, reset}
-})
+  return {category, products, setCategory, setProducts, reset};
+});
 
-export const useCartStore = defineStore('cart', () => {
+export const useCartStore = defineStore("cart", () => {
   const cart = ref<CartItem[]>([]);
   const isOpen = ref(false);
   const deliveryType = ref<DeliveryType>(DeliveryType.COURIER);
@@ -83,7 +84,7 @@ export const useCartStore = defineStore('cart', () => {
       cart.value.push({
         product,
         categoryId: categoryId,
-        count: 1
+        count: 1,
       });
     } else {
       item.count++;
@@ -149,15 +150,15 @@ export const useCartStore = defineStore('cart', () => {
       items: cart.value.map((item) => ({
         productId: item.product.id,
         categoryId: item.categoryId,
-        count: item.count
-      }))
-    }
+        count: item.count,
+      })),
+    };
     localStorage.setItem(CART_KEY, JSON.stringify(serializedCart));
   }
 
   async function restoreCart() {
     if (cart.value.length !== 0) {
-      return
+      return;
     }
     const serializedCartStr = localStorage.getItem(CART_KEY);
     if (!serializedCartStr) {
@@ -173,19 +174,36 @@ export const useCartStore = defineStore('cart', () => {
     phone.value = serializedCart.phone;
     notes.value = serializedCart.notes;
     deliveryType.value = serializedCart.deliveryType;
-    cart.value = await Promise.all(serializedCart.items.map(async (serializedItem) => {
-      const remoteItem = await fetchProduct(serializedItem.productId);
-      return {
-        product: remoteItem,
-        categoryId: serializedItem.categoryId,
-        count: serializedItem.count,
-      }
-    }));
+    cart.value = await Promise.all(
+      serializedCart.items.map(async (serializedItem) => {
+        const remoteItem = await fetchProduct(serializedItem.productId);
+        return {
+          product: remoteItem,
+          categoryId: serializedItem.categoryId,
+          count: serializedItem.count,
+        };
+      })
+    );
   }
 
   return {
-    cart, isOpen, deliveryType, notes, name, phone, email,
-    add, remove, setCount, open, close, setDeliveryType, setNotes, setName, setPhone, setEmail,
+    cart,
+    isOpen,
+    deliveryType,
+    notes,
+    name,
+    phone,
+    email,
+    add,
+    remove,
+    setCount,
+    open,
+    close,
+    setDeliveryType,
+    setNotes,
+    setName,
+    setPhone,
+    setEmail,
     restoreCart,
-  }
-})
+  };
+});

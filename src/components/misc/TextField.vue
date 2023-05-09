@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 interface Props {
   open?: boolean;
   placeholder: string;
@@ -10,16 +9,17 @@ const props = withDefaults(defineProps<Props>(), {
   open: true,
   placeholder: "",
 });
-const emit = defineEmits(["input"])
+const emit = defineEmits(["input"]);
 </script>
 
 <template>
   <div class="TextField">
     <textarea
-      :value="props.value"
-      @input="(e) => emit('input', e)"
-      :placeholder="props.placeholder"
-      :class="{TextField__TextArea: true, open: props.open}">
+            :value="props.value"
+            @input="(e) => emit('input', e)"
+            :placeholder="props.placeholder"
+            :class="{ TextField__TextArea: true, open: props.open }"
+    >
     </textarea>
   </div>
 </template>

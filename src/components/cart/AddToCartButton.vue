@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {useCartStore} from "@/stores/store";
-import type {MProduct} from "@/lib/api";
+import type {MProduct} from "@/lib/api_types";
 
 interface Props {
   product: MProduct;
@@ -25,15 +25,15 @@ function onClick() {
 
 <style scoped>
 .AddToCartButton {
-  font: var(--font-din-next);
-  font-size: 16px;
-  color: white;
-  background-color: var(--color-secondary);
-  border-radius: 5px;
-  cursor: pointer;
-  padding: 8px 16px;
-  width: 100%;
-  transition: background-color .2s ease-in-out, color .2s ease-in-out;
+    font: var(--font-din-next);
+    font-size: 16px;
+    color: white;
+    background-color: var(--color-secondary);
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 8px 16px;
+    width: 100%;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
 .AddToCartButton:hover {

@@ -17,10 +17,14 @@ interface Props {
 const props = defineProps<Props>();
 
 const priceStr = computed(() => formatPrice(props.item.product.price));
-const totalPriceStr = computed(() => formatPrice(props.item.product.price * props.item.count));
+const totalPriceStr = computed(() =>
+  formatPrice(props.item.product.price * props.item.count)
+);
 
 function gotoItemPage() {
-  router.push(`/product?productId=${props.item.product.id}&categoryId=${props.item.categoryId}`);
+  router.push(
+    `/product?productId=${props.item.product.id}&categoryId=${props.item.categoryId}`
+  );
   cartStore.close();
 }
 </script>
@@ -28,25 +32,32 @@ function gotoItemPage() {
 <template>
   <div class="CartCardLarge">
     <div class="CartCardLarge__ImgContainer" @click="gotoItemPage">
-      <img
-        :alt="`${props.item.product.name} image`"
-        :src="props.item.product.previewImages[0].medium ?? props.item.product.previewImages[0].original">
+        <img
+                :alt="`${props.item.product.name} image`"
+                :src="
+          props.item.product.previewImages[0].medium ??
+          props.item.product.previewImages[0].original
+        "
+        />
     </div>
     <div class="CartCardLarge__Info">
       <div class="CartCardLarge__Name">
-        {{ props.item.product.name }}
+          {{ props.item.product.name }}
       </div>
-      <div class="CartCardLarge__Price">
-        {{ priceStr }}
+        <div class="CartCardLarge__Price">
+            {{ priceStr }}
+        </div>
+    </div>
+      <CartCounter :item="props.item"/>
+      <div class="CartCardLarge__TotalPrice">
+          {{ totalPriceStr }}
       </div>
-    </div>
-    <CartCounter :item="props.item"/>
-    <div class="CartCardLarge__TotalPrice">
-      {{ totalPriceStr }}
-    </div>
-    <div class="CartCardLarge__CloseButton" @click="cartStore.remove(props.item.product.id)">
-      <IconClose/>
-    </div>
+      <div
+              class="CartCardLarge__CloseButton"
+              @click="cartStore.remove(props.item.product.id)"
+      >
+          <IconClose/>
+      </div>
   </div>
 </template>
 

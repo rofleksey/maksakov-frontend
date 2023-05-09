@@ -5,23 +5,23 @@ interface Props {
   id: number;
   name: string;
   img: string;
-  big?: boolean
+  big?: boolean;
 }
 
 const router = useRouter();
 
 const props = withDefaults(defineProps<Props>(), {
-  big: false
-})
+  big: false,
+});
 </script>
 
 <template>
   <div
-    :class="{CategoryButton: true, 'no-select': true, big: props.big}"
-    @click="router.push(`/category?id=${props.id}`)"
+          :class="{ CategoryButton: true, 'no-select': true, big: props.big }"
+          @click="router.push(`/category?id=${props.id}`)"
   >
     <div class="CategoryButton__img-container">
-      <img :src="props.img" :alt="props.name"/>
+        <img :src="props.img" :alt="props.name"/>
     </div>
     <div class="CategoryButton__name">{{ props.name }}</div>
   </div>

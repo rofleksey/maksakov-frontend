@@ -16,48 +16,51 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const priceStr = computed(() => formatPrice(props.item.product.price))
+const priceStr = computed(() => formatPrice(props.item.product.price));
 
 function gotoItemPage() {
-  router.push(`/product?productId=${props.item.product.id}&categoryId=${props.item.categoryId}`);
+  router.push(
+    `/product?productId=${props.item.product.id}&categoryId=${props.item.categoryId}`
+  );
   cartStore.close();
 }
 </script>
 
 <template>
-  <div
-    class="CartCardSmall no-select"
-  >
-    <div class="CartCardSmall__ImgContainer"
-         @click="gotoItemPage">
-      <img :alt="`${props.item.product.name} image`"
-           :src="props.item.product.previewImages[0].small ?? props.item.product.previewImages[0].original"/>
-    </div>
-    <div class="CartCardSmall__Info">
-      <div class="CartCardSmall__name">
-        {{ props.item.product.name }}
-      </div>
-      <div class="CartCardSmall__price">
-        {{ priceStr }}
-      </div>
-      <CartCounter
-        class="CartCardSmall__counter"
-        :item="props.item"/>
-    </div>
-    <IconClose
-      class="CartCardSmall__CloseButton"
-      @click="cartStore.remove(props.item.product.id)"/>
+    <div class="CartCardSmall no-select">
+        <div class="CartCardSmall__ImgContainer" @click="gotoItemPage">
+            <img
+                    :alt="`${props.item.product.name} image`"
+                    :src="
+          props.item.product.previewImages[0].small ??
+          props.item.product.previewImages[0].original
+        "
+            />
+        </div>
+        <div class="CartCardSmall__Info">
+            <div class="CartCardSmall__name">
+                {{ props.item.product.name }}
+            </div>
+            <div class="CartCardSmall__price">
+                {{ priceStr }}
+            </div>
+            <CartCounter class="CartCardSmall__counter" :item="props.item"/>
+        </div>
+        <IconClose
+                class="CartCardSmall__CloseButton"
+                @click="cartStore.remove(props.item.product.id)"
+        />
   </div>
 </template>
 
 <style scoped>
 .CartCardSmall {
-  padding-bottom: 30px;
-  margin-bottom: 30px;
-  border-bottom: 1px solid #D3D3D3;
-  position: relative;
-  display: flex;
-  flex-direction: row;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #d3d3d3;
+    position: relative;
+    display: flex;
+    flex-direction: row;
 }
 
 .CartCardSmall__Info {

@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import {computed, onMounted, ref, watch} from "vue";
-import 'vue3-carousel/dist/carousel.css'
 import type {CartItem} from "@/stores/store";
 import {useCartStore, useMiscStore} from "@/stores/store";
 import CartCardLarge from "@/components/cart/CartCardLarge.vue";
 import {formatPrice} from "@/lib/misc";
-import type {MMisc} from "@/lib/api";
-import {DeliveryType, fetchMisc, sendOrder} from "@/lib/api";
+import type {MMisc} from "@/lib/api_types";
+import {DeliveryType} from "@/lib/api_types";
+import {fetchMisc, sendOrder} from "@/lib/api";
 import CartDeliveryDropDown from "@/components/cart/CartDeliveryDropDown.vue";
 import CartNotes from "@/components/cart/CartNotes.vue";
 import CartSubmit from "@/components/cart/CartSubmit.vue";
 import {useToast} from "vue-toastification";
 import {useRouter} from "vue-router";
-import Footer from "@/components/footer/Footer.vue";
+import Footer from "@/components/footer/SiteFooter.vue";
 import TextField from "@/components/misc/TextField.vue";
 
 const toast = useToast();
@@ -37,7 +37,9 @@ const deliveryPrice = computed(() => {
 });
 const deliveryPriceStr = computed(() => formatPrice(deliveryPrice.value));
 
-const itemsPrice = computed(() => cart.value.reduce((sum, item) => sum + item.product.price * item.count, 0));
+const itemsPrice = computed(() =>
+  cart.value.reduce((sum, item) => sum + item.product.price * item.count, 0)
+);
 const itemsPriceStr = computed(() => formatPrice(itemsPrice.value));
 
 const totalPrice = computed(() => itemsPrice.value + deliveryPrice.value);
@@ -61,7 +63,7 @@ watch(cart.value, () => {
   if (cart.value.length === 0) {
     router.back();
   }
-})
+});
 
 onMounted(() => {
   if (!misc.value) {
@@ -70,8 +72,8 @@ onMounted(() => {
     });
   }
 
-  window.scrollTo({top: 0, behavior: 'smooth'});
-})
+  window.scrollTo({top: 0, behavior: "smooth"});
+});
 
 function onSubmit() {
   if (submitLoading.value) {
@@ -81,19 +83,19 @@ function onSubmit() {
     toast.error("Пожалуйста, укажите свое имя!", {
       timeout: 5000,
     });
-    return
+    return;
   }
   if (clientPhone.value.trim().length === 0) {
     toast.error("Пожалуйста, укажите свой телефон!", {
       timeout: 5000,
     });
-    return
+    return;
   }
   if (clientEmail.value.trim().length === 0) {
     toast.error("Пожалуйста, укажите свою электронную почту!", {
       timeout: 5000,
     });
-    return
+    return;
   }
   submitLoading.value = true;
   sendOrder({
@@ -105,20 +107,23 @@ function onSubmit() {
     items: cart.value.map((item) => ({
       id: item.product.id,
       count: item.count,
-    }))
-  }).then(() => {
-    toast.success("Заказ оформлен!", {
-      timeout: 5000,
+    })),
+  })
+    .then(() => {
+      toast.success("Заказ оформлен!", {
+        timeout: 5000,
+      });
+      router.push("/");
+    })
+    .catch((e) => {
+      console.error(e);
+      toast.error("Произошла ошибка, повторите позже", {
+        timeout: 5000,
+      });
+    })
+    .finally(() => {
+      submitLoading.value = false;
     });
-    router.push("/");
-  }).catch((e) => {
-    console.error(e);
-    toast.error("Произошла ошибка, повторите позже", {
-      timeout: 5000,
-    });
-  }).finally(() => {
-    submitLoading.value = false;
-  });
 }
 </script>
 
@@ -126,23 +131,20 @@ function onSubmit() {
   <div class="view-flex">
     <div class="CartView__Column">
       <section class="CartView__Main">
-        <div class="CartView__title">
-          Моя корзина
-        </div>
+          <div class="CartView__title">Моя корзина</div>
         <div class="CartView__Items">
           <TransitionGroup name="CartItemLarge">
-            <CartCardLarge
-              v-for="item in cart"
-              :key="item.product.id"
-              :item="item"/>
+              <CartCardLarge
+                      v-for="item in cart"
+                      :key="item.product.id"
+                      :item="item"
+              />
           </TransitionGroup>
         </div>
-        <CartNotes class="CartView__Notes"/>
+          <CartNotes class="CartView__Notes"/>
       </section>
       <aside class="CartView__Summary">
-        <div class="CartView__title">
-          Детали заказа
-        </div>
+          <div class="CartView__title">Детали заказа</div>
         <div class="CartView__SummaryItem">
           <div>Сумма</div>
           <div>{{ itemsPriceStr }}</div>
@@ -151,9 +153,10 @@ function onSubmit() {
           <div>Доставка</div>
           <div>{{ deliveryPriceStr }}</div>
         </div>
-        <CartDeliveryDropDown
-          class="CartView__CartDeliveryDropDown"
-          :delivery-price="misc?.deliveryPrice ?? 0"/>
+          <CartDeliveryDropDown
+                  class="CartView__CartDeliveryDropDown"
+                  :delivery-price="misc?.deliveryPrice ?? 0"
+          />
         <div class="CartView__FinalItem">
           <div>Итого</div>
           <div>{{ totalPriceStr }}</div>
@@ -176,14 +179,15 @@ function onSubmit() {
           @input="onEmailInput"
           placeholder="Электронная почта ⃰"
         />
-        <CartSubmit
-          class="CartView__CartSubmit"
-          :loading="submitLoading"
-          @submit="onSubmit"/>
+          <CartSubmit
+                  class="CartView__CartSubmit"
+                  :loading="submitLoading"
+                  @submit="onSubmit"
+          />
       </aside>
     </div>
 
-    <Footer/>
+      <Footer/>
   </div>
 </template>
 

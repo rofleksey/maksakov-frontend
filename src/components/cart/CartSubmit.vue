@@ -9,21 +9,24 @@ const emit = defineEmits(["submit"]);
 </script>
 
 <template>
-  <button :class="{CartSubmit: true, loading: props.loading}" @click="emit('submit')">
-    <span>Оформить заказ</span>
-  </button>
+    <button
+            :class="{ CartSubmit: true, loading: props.loading }"
+            @click="emit('submit')"
+    >
+        <span>Оформить заказ</span>
+    </button>
 </template>
 
 <style scoped>
 .CartSubmit {
-  font: var(--font-din-next);
-  font-size: 16px;
-  color: white;
-  background-color: rgb(158, 112, 118);;
-  cursor: pointer;
-  padding: 8px 16px;
-  width: 100%;
-  transition: background-color .2s ease-in-out, color .2s ease-in-out;
+    font: var(--font-din-next);
+    font-size: 16px;
+    color: white;
+    background-color: rgb(158, 112, 118);
+    cursor: pointer;
+    padding: 8px 16px;
+    width: 100%;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
 .CartSubmit.loading {

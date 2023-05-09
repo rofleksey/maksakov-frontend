@@ -7,10 +7,8 @@ const props = defineProps<Props>();
 </script>
 
 <template>
-  <a class="FooterIcon"
-     target=”_blank”
-     :href="href">
-    <slot></slot>
+  <a class="FooterIcon" target="”_blank”" :href="href">
+      <slot></slot>
   </a>
 </template>
 
