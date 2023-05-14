@@ -150,13 +150,16 @@ onMounted(() => {
   display: none;
 }
 
+.ProductView__Nav {
+  display: flex;
+}
+
 .ProductView__BreadcrumbBack {
   margin-bottom: 10px;
 }
 
 .ProductView__Nav,
 .ProductView__BackNav {
-  display: flex;
   flex-direction: row;
   margin-top: 35px;
   margin-bottom: 60px;
