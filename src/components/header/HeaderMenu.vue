@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import {useRoute, useRouter} from "vue-router";
-import {useCatalogStore} from "@/stores/store";
-import {computed} from "vue";
-import {SALE_CATEGORY_ID} from "@/lib/misc";
+import { useRoute, useRouter } from "vue-router";
+import { useCatalogStore } from "@/stores/store";
+import { computed } from "vue";
+import { SALE_CATEGORY_ID } from "@/lib/misc";
 
 const router = useRouter();
 const route = useRoute();
@@ -12,15 +12,8 @@ const categories = computed(() => catalogStore.categories);
 
 <template>
   <div class="HeaderMenu">
-      <div
-              :class="{ HeaderMenu__item: true, selected: route.name === 'home' }"
-              style="width: 140px"
-              @click="router.push('/')"
-      >
-          о производстве
-      </div>
-      <div
-              :class="{
+    <div
+      :class="{
         HeaderMenu__item: true,
         selected:
           (route.name === 'catalog' ||
@@ -29,22 +22,22 @@ const categories = computed(() => catalogStore.categories);
           route.query.id !== '-1' &&
           route.query.categoryId !== '-1',
       }"
-              style="width: 80px"
-              @click="router.push('/catalog')"
-      >
-          каталог
-          <ul class="HeaderMenu__SubMenu">
-              <li
-                      v-for="category in categories"
-                      @click.stop="router.push(`/category?id=${category.id}`)"
-                      :key="category.id"
-              >
-                  {{ category.name }}
-              </li>
-          </ul>
+      style="width: 80px"
+      @click="router.push('/catalog')"
+    >
+      каталог
+      <ul class="HeaderMenu__SubMenu">
+        <li
+          v-for="category in categories"
+          @click.stop="router.push(`/category?id=${category.id}`)"
+          :key="category.id"
+        >
+          {{ category.name }}
+        </li>
+      </ul>
     </div>
-      <div
-              :class="{
+    <div
+      :class="{
         HeaderMenu__item: true,
         selected:
           (route.name === 'catalog' ||
@@ -52,25 +45,25 @@ const categories = computed(() => catalogStore.categories);
             route.name === 'product') &&
           (route.query.id === '-1' || route.query.categoryId === '-1'),
       }"
-              style="width: 110px"
-              @click="router.push(`/category?id=${SALE_CATEGORY_ID}`)"
-      >
-          распродажа
-      </div>
-      <div
-              class="HeaderMenu__item"
-              style="width: 160px"
-              @click="router.push('/delivery')"
-      >
-          доставка и оплата
-      </div>
-      <div
-              class="HeaderMenu__item"
-              style="width: 100px"
-              @click="router.push('/contacts')"
-      >
-          контакты
-      </div>
+      style="width: 110px"
+      @click="router.push(`/category?id=${SALE_CATEGORY_ID}`)"
+    >
+      распродажа
+    </div>
+    <div
+      class="HeaderMenu__item"
+      style="width: 160px"
+      @click="router.push('/delivery')"
+    >
+      доставка и оплата
+    </div>
+    <div
+      class="HeaderMenu__item"
+      style="width: 100px"
+      @click="router.push('/contacts')"
+    >
+      контакты
+    </div>
   </div>
 </template>
 
@@ -115,7 +108,6 @@ const categories = computed(() => catalogStore.categories);
 
 .HeaderMenu__SubMenu {
   padding-top: 20px;
-  background: white;
   list-style: none;
   position: absolute;
   margin: 0 auto;
@@ -128,15 +120,16 @@ const categories = computed(() => catalogStore.categories);
 .HeaderMenu__item:hover .HeaderMenu__SubMenu li {
   display: block;
   opacity: 1;
+  background: white;
 }
 
 .HeaderMenu__SubMenu li {
-    color: var(--color-secondary);
-    letter-spacing: normal;
-    padding: 5px;
-    display: none;
-    opacity: 0;
-    transition: color 0.25s ease 0s, letter-spacing 0.4s ease 0s,
+  color: var(--color-secondary);
+  letter-spacing: normal;
+  padding: 5px;
+  display: none;
+  opacity: 0;
+  transition: color 0.25s ease 0s, letter-spacing 0.4s ease 0s,
     opacity 0.4s ease 0s;
 }
 

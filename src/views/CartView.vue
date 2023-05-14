@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import {computed, onMounted, ref, watch} from "vue";
-import type {CartItem} from "@/stores/store";
-import {useCartStore, useMiscStore} from "@/stores/store";
+import { computed, onMounted, ref, watch } from "vue";
+import type { CartItem } from "@/stores/store";
+import { useCartStore, useMiscStore } from "@/stores/store";
 import CartCardLarge from "@/components/cart/CartCardLarge.vue";
-import {formatPrice} from "@/lib/misc";
-import type {MMisc} from "@/lib/api_types";
-import {DeliveryType} from "@/lib/api_types";
-import {fetchMisc, sendOrder} from "@/lib/api";
+import { formatPrice } from "@/lib/misc";
+import type { MMisc } from "@/lib/api_types";
+import { DeliveryType } from "@/lib/api_types";
+import { fetchMisc, sendOrder } from "@/lib/api";
 import CartDeliveryDropDown from "@/components/cart/CartDeliveryDropDown.vue";
 import CartNotes from "@/components/cart/CartNotes.vue";
 import CartSubmit from "@/components/cart/CartSubmit.vue";
-import {useToast} from "vue-toastification";
-import {useRouter} from "vue-router";
+import { useToast } from "vue-toastification";
+import { useRouter } from "vue-router";
 import Footer from "@/components/footer/SiteFooter.vue";
 import TextField from "@/components/misc/TextField.vue";
 
@@ -72,7 +72,7 @@ onMounted(() => {
     });
   }
 
-  window.scrollTo({top: 0, behavior: "smooth"});
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
 function onSubmit() {
@@ -131,20 +131,20 @@ function onSubmit() {
   <div class="view-flex">
     <div class="CartView__Column">
       <section class="CartView__Main">
-          <div class="CartView__title">Моя корзина</div>
+        <div class="CartView__title">Моя корзина</div>
         <div class="CartView__Items">
           <TransitionGroup name="CartItemLarge">
-              <CartCardLarge
-                      v-for="item in cart"
-                      :key="item.product.id"
-                      :item="item"
-              />
+            <CartCardLarge
+              v-for="item in cart"
+              :key="item.product.id"
+              :item="item"
+            />
           </TransitionGroup>
         </div>
-          <CartNotes class="CartView__Notes"/>
+        <CartNotes class="CartView__Notes" />
       </section>
       <aside class="CartView__Summary">
-          <div class="CartView__title">Детали заказа</div>
+        <div class="CartView__title">Детали заказа</div>
         <div class="CartView__SummaryItem">
           <div>Сумма</div>
           <div>{{ itemsPriceStr }}</div>
@@ -153,10 +153,10 @@ function onSubmit() {
           <div>Доставка</div>
           <div>{{ deliveryPriceStr }}</div>
         </div>
-          <CartDeliveryDropDown
-                  class="CartView__CartDeliveryDropDown"
-                  :delivery-price="misc?.deliveryPrice ?? 0"
-          />
+        <CartDeliveryDropDown
+          class="CartView__CartDeliveryDropDown"
+          :delivery-price="misc?.deliveryPrice ?? 0"
+        />
         <div class="CartView__FinalItem">
           <div>Итого</div>
           <div>{{ totalPriceStr }}</div>
@@ -179,29 +179,30 @@ function onSubmit() {
           @input="onEmailInput"
           placeholder="Электронная почта ⃰"
         />
-          <CartSubmit
-                  class="CartView__CartSubmit"
-                  :loading="submitLoading"
-                  @submit="onSubmit"
-          />
+        <CartSubmit
+          class="CartView__CartSubmit"
+          :loading="submitLoading"
+          @submit="onSubmit"
+        />
       </aside>
     </div>
 
-      <Footer/>
+    <Footer />
   </div>
 </template>
 
 <style>
 .CartView__Column {
-  width: 980px;
+  max-width: 980px;
   margin-top: 33px;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .CartView__Main {
   flex-grow: 999;
-  width: 608px;
+  max-width: 608px;
 }
 
 .CartView__Summary {
@@ -280,5 +281,19 @@ function onSubmit() {
 
 .CartItemLarge-leave-to {
   opacity: 0;
+}
+
+@media (max-width: 1000px) {
+  .CartView__Column {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .CartView__Summary {
+    margin-left: 0;
+    width: 100%;
+  }
 }
 </style>

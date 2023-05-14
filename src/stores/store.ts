@@ -1,8 +1,8 @@
-import {ref} from "vue";
-import {defineStore} from "pinia";
-import type {MCategory, MMisc, MProduct} from "@/lib/api_types";
-import {DeliveryType} from "@/lib/api_types";
-import {fetchProduct} from "@/lib/api";
+import { ref } from "vue";
+import { defineStore } from "pinia";
+import type { MCategory, MMisc, MProduct } from "@/lib/api_types";
+import { DeliveryType } from "@/lib/api_types";
+import { fetchProduct } from "@/lib/api";
 
 const CART_VERSION = "v1";
 const CART_KEY = "maksakov_cart";
@@ -29,6 +29,20 @@ interface SerializedCart {
   items: SerializedCartItem[];
 }
 
+export const useMenuDrawerStore = defineStore("menuDrawer", () => {
+  const isOpen = ref(false);
+
+  function open() {
+    isOpen.value = true;
+  }
+
+  function close() {
+    isOpen.value = false;
+  }
+
+  return { isOpen, open, close };
+});
+
 export const useMiscStore = defineStore("misc", () => {
   const misc = ref<MMisc | null>(null);
 
@@ -36,7 +50,7 @@ export const useMiscStore = defineStore("misc", () => {
     misc.value = data;
   }
 
-  return {misc, setMisc};
+  return { misc, setMisc };
 });
 
 export const useCatalogStore = defineStore("catalog", () => {
@@ -46,7 +60,7 @@ export const useCatalogStore = defineStore("catalog", () => {
     categories.value = data;
   }
 
-  return {categories, setCategories};
+  return { categories, setCategories };
 });
 
 export const useLastCategoryStore = defineStore("last_category", () => {
@@ -66,7 +80,7 @@ export const useLastCategoryStore = defineStore("last_category", () => {
     products.value = [];
   }
 
-  return {category, products, setCategory, setProducts, reset};
+  return { category, products, setCategory, setProducts, reset };
 });
 
 export const useCartStore = defineStore("cart", () => {

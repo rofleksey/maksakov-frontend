@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import Title from "@/components/misc/SiteTitle.vue";
-import {computed, onMounted} from "vue";
-import type {MCategory} from "@/lib/api_types";
-import {fetchCategories} from "@/lib/api";
+import { computed, onMounted } from "vue";
+import type { MCategory } from "@/lib/api_types";
+import { fetchCategories } from "@/lib/api";
 import Separator from "@/components/misc/SeparatorLine.vue";
 import CategoryButton from "@/components/misc/CategoryButton.vue";
-import {useCatalogStore} from "@/stores/store";
+import { useCatalogStore } from "@/stores/store";
 import Footer from "@/components/footer/SiteFooter.vue";
 
 const catalogStore = useCatalogStore();
@@ -17,7 +17,7 @@ onMounted(() => {
       catalogStore.setCategories(data);
     });
   }
-  window.scrollTo({top: 0, behavior: "smooth"});
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
 </script>
 
@@ -27,7 +27,7 @@ onMounted(() => {
       <span>Ассортимент</span>
     </Title>
     <div class="CatalogView__CategoryContainer">
-        <Separator class="CatalogView__Title-separator"/>
+      <Separator class="CatalogView__Title-separator" />
       <div class="CatalogView__CategoryList">
         <CategoryButton
           v-for="category in categories"
@@ -40,7 +40,7 @@ onMounted(() => {
       </div>
     </div>
 
-      <Footer/>
+    <Footer />
   </div>
 </template>
 
@@ -60,15 +60,16 @@ onMounted(() => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 828px;
+  max-width: 828px;
+  width: 100%;
 }
 
 .CatalogView__CategoryList {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(391px, 1fr));
   align-items: start;
-  column-gap: 50px;
-  row-gap: 25px;
-  width: 100%;
+  grid-column-gap: 45px;
+  grid-row-gap: 25px;
+  max-width: 100%;
 }
 </style>

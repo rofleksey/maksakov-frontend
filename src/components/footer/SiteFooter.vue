@@ -10,18 +10,18 @@ import IconEmail from "@/components/icons/IconEmail.vue";
     <div class="Footer__Text">8-981-87-000-22</div>
 
     <FooterIcon>
-        <IconEmail/>
+      <IconEmail />
     </FooterIcon>
 
     <FooterIcon href="https://vk.com/maksakovcom">
-        <IconVK/>
+      <IconVK />
     </FooterIcon>
 
     <FooterIcon href="https://www.instagram.com/maksakovcom">
-        <IconInst/>
+      <IconInst />
     </FooterIcon>
 
-      <div class="Footer__Text">maksakovcom@mail.ru</div>
+    <div class="Footer__Text">maksakovcom@mail.ru</div>
   </footer>
 </template>
 
@@ -48,6 +48,12 @@ import IconEmail from "@/components/icons/IconEmail.vue";
   color: white;
   font: var(--font-din-next);
   font-size: 16px;
+}
+
+@media (max-width: 767px) {
+  .Footer__Text {
+    display: none;
+  }
 }
 
 @keyframes fadein {

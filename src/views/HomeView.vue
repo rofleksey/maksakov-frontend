@@ -2,11 +2,11 @@
 import Cover from "@/components/misc/SiteCover.vue";
 import Banner from "@/components/misc/SiteBanner.vue";
 import Title from "@/components/misc/SiteTitle.vue";
-import {computed, onMounted} from "vue";
-import {fetchCategories, fetchMisc} from "@/lib/api";
+import { computed, onMounted } from "vue";
+import { fetchCategories, fetchMisc } from "@/lib/api";
 import CategoryButtonColumn from "@/components/misc/CategoryButtonColumn.vue";
 import Separator from "@/components/misc/SeparatorLine.vue";
-import {useCatalogStore, useMiscStore} from "@/stores/store";
+import { useCatalogStore, useMiscStore } from "@/stores/store";
 import Markdown from "@/components/misc/MarkDown.vue";
 import Footer from "@/components/footer/SiteFooter.vue";
 
@@ -28,29 +28,29 @@ onMounted(() => {
       miscStore.setMisc(data);
     });
   }
-  window.scrollTo({top: 0, behavior: "smooth"});
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
 </script>
 
 <template>
   <div class="view-flex">
-      <Cover/>
+    <Cover />
     <Banner>
       <span>без него, как без рук</span>
     </Banner>
     <Title class="HomeView__Maksakov">
       <span>"МАКСАКОВ"</span>
     </Title>
-      <Separator class="HomeView__Maksakov-separator"/>
+    <Separator class="HomeView__Maksakov-separator" />
     <div class="HomeView__content">
-        <CategoryButtonColumn :categories="categories"/>
-        <Markdown
-                class="HomeView__Markdown"
-                :text="misc?.homeDescription ?? ''"
-        />
+      <CategoryButtonColumn :categories="categories" />
+      <Markdown
+        class="HomeView__Markdown"
+        :text="misc?.homeDescription ?? ''"
+      />
     </div>
 
-      <Footer/>
+    <Footer />
   </div>
 </template>
 
@@ -65,13 +65,13 @@ onMounted(() => {
 }
 
 .HomeView__content {
-  position: relative;
-  right: 50px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   gap: 50px;
   margin-top: 50px;
+  flex-wrap: wrap-reverse;
+  width: 100%;
 }
 
 .HomeView__content .CategoryButtonColumn {
@@ -79,6 +79,8 @@ onMounted(() => {
 }
 
 .HomeView__content .HomeView__Markdown {
-  width: 570px;
+  max-width: 570px;
+  flex-shrink: 1;
+  padding: 10px;
 }
 </style>

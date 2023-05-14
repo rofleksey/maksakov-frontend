@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import {computed, onMounted} from "vue";
-import type {MCategory, MProduct} from "@/lib/api_types";
-import {fetchCategory, fetchProducts} from "@/lib/api";
-import {useRoute} from "vue-router";
+import { computed, onMounted } from "vue";
+import type { MCategory, MProduct } from "@/lib/api_types";
+import { fetchCategory, fetchProducts } from "@/lib/api";
+import { useRoute } from "vue-router";
 import Title from "@/components/misc/SiteTitle.vue";
 import ProductCard from "@/components/misc/ProductCard.vue";
 import Gallery from "@/components/misc/ImageGallery.vue";
-import {useLastCategoryStore} from "@/stores/store";
+import { useLastCategoryStore } from "@/stores/store";
 import Footer from "@/components/footer/SiteFooter.vue";
 
 const route = useRoute();
@@ -31,22 +31,22 @@ onMounted(() => {
       lastCategoryStore.setProducts(data);
     });
   }
-  window.scrollTo({top: 0, behavior: "smooth"});
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
 </script>
 
 <template>
   <div class="view-flex">
     <div class="CategoryView__Column">
-        <Gallery
-                v-if="category"
-                class="CategoryView__Gallery"
-                :autoplay="category?.images?.length > 1 ? 5000 : 0"
-                :transition="1000"
-                :images="category?.images ?? []"
-        />
+      <Gallery
+        v-if="category"
+        class="CategoryView__Gallery"
+        :autoplay="category?.images?.length > 1 ? 5000 : 0"
+        :transition="1000"
+        :images="category?.images ?? []"
+      />
       <Title light class="CategoryView__Title">
-          {{ category?.name ?? "" }}
+        {{ category?.name ?? "" }}
       </Title>
       <div class="CategoryView__CategoryList">
         <ProductCard
@@ -58,23 +58,24 @@ onMounted(() => {
       </div>
     </div>
 
-      <Footer/>
+    <Footer />
   </div>
 </template>
 
 <style>
 .CategoryView__Column {
-  width: 956px;
+  max-width: 956px;
+  width: 100%;
 }
 
 .CategoryView__Gallery .carousel_slide {
-  width: 956px;
-  height: 467px;
+  max-width: 956px;
+  max-height: 467px;
 }
 
 .CategoryView__Gallery .Gallery__item-container {
   width: 100%;
-  height: 467px;
+  max-height: 467px;
 }
 
 .CategoryView__Title {
@@ -83,10 +84,10 @@ onMounted(() => {
 }
 
 .CategoryView__CategoryList {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    align-items: start;
-    width: 956px;
-    gap: 15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(306px, 1fr));
+  align-items: start;
+  max-width: 100%;
+  grid-gap: 15px;
 }
 </style>

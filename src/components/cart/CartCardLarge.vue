@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import {computed} from "vue";
-import {useRouter} from "vue-router";
-import {formatPrice} from "@/lib/misc";
-import type {CartItem} from "@/stores/store";
-import {useCartStore} from "@/stores/store";
+import { computed } from "vue";
+import { useRouter } from "vue-router";
+import { formatPrice } from "@/lib/misc";
+import type { CartItem } from "@/stores/store";
+import { useCartStore } from "@/stores/store";
 import CartCounter from "@/components/cart/CartCounter.vue";
 import IconClose from "@/components/icons/IconClose.vue";
 
@@ -32,32 +32,34 @@ function gotoItemPage() {
 <template>
   <div class="CartCardLarge">
     <div class="CartCardLarge__ImgContainer" @click="gotoItemPage">
-        <img
-                :alt="`${props.item.product.name} image`"
-                :src="
+      <img
+        :alt="`${props.item.product.name} image`"
+        :src="
           props.item.product.previewImages[0].medium ??
           props.item.product.previewImages[0].original
         "
-        />
+      />
     </div>
     <div class="CartCardLarge__Info">
       <div class="CartCardLarge__Name">
-          {{ props.item.product.name }}
+        {{ props.item.product.name }}
       </div>
-        <div class="CartCardLarge__Price">
-            {{ priceStr }}
-        </div>
+      <div class="CartCardLarge__Price">
+        {{ priceStr }}
+      </div>
     </div>
-      <CartCounter :item="props.item"/>
+    <div class="CartCardLarge__TotalPriceContainer">
+      <CartCounter :item="props.item" />
       <div class="CartCardLarge__TotalPrice">
-          {{ totalPriceStr }}
+        {{ totalPriceStr }}
       </div>
-      <div
-              class="CartCardLarge__CloseButton"
-              @click="cartStore.remove(props.item.product.id)"
-      >
-          <IconClose/>
-      </div>
+    </div>
+    <div
+      class="CartCardLarge__CloseButton"
+      @click="cartStore.remove(props.item.product.id)"
+    >
+      <IconClose />
+    </div>
   </div>
 </template>
 
@@ -67,6 +69,7 @@ function gotoItemPage() {
   padding: 32px 0;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
   font: var(--font-din-next);
   border-bottom: 1px solid rgba(48, 49, 50, 0.2);
@@ -88,6 +91,7 @@ function gotoItemPage() {
 
 .CartCardLarge__Info {
   width: 254px;
+  margin-left: 10px;
 }
 
 .CartCardLarge__Name {
@@ -101,6 +105,12 @@ function gotoItemPage() {
   margin-top: 10px;
 }
 
+.CartCardLarge__TotalPriceContainer {
+  display: flex;
+  flex-direction: row;
+  margin: 5px;
+}
+
 .CartCardLarge__TotalPrice {
   font-size: 16px;
   margin-top: 4px;
@@ -109,8 +119,9 @@ function gotoItemPage() {
 }
 
 .CartCardLarge__CloseButton {
-  position: relative;
-  bottom: 20px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
   display: flex;
   align-items: center;
   justify-content: center;

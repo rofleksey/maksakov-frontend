@@ -1,20 +1,14 @@
-<script setup lang="ts">
-import {useRouter} from "vue-router";
-
-const router = useRouter();
-</script>
-
 <template>
-    <RouterLink to="/" class="HeaderLogo">
-        <img class="HeaderLogo__img" alt="logo" src="@/assets/logo.png"/>
-        <div class="HeaderLogo__title">
-            <div class="HeaderLogo__title__primary">МАКСАКОВ</div>
-            <div class="HeaderLogo__title__secondary">изделия ручной работы</div>
-        </div>
-    </RouterLink>
+  <RouterLink to="/" class="HeaderLogo">
+    <img class="HeaderLogo__img" alt="logo" src="@/assets/logo.png" />
+    <div class="HeaderLogo__title">
+      <div class="HeaderLogo__title__primary">МАКСАКОВ</div>
+      <div class="HeaderLogo__title__secondary">изделия ручной работы</div>
+    </div>
+  </RouterLink>
 </template>
 
-<style>
+<style scoped>
 .HeaderLogo {
   display: flex;
   flex-direction: row;
@@ -44,5 +38,11 @@ const router = useRouter();
   width: 79px;
   height: 63px;
   object-fit: cover;
+}
+
+@media (max-width: 1000px) {
+  .HeaderLogo__img {
+    display: none;
+  }
 }
 </style>

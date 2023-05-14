@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import {RouterView} from "vue-router";
+import { RouterView } from "vue-router";
 import SiteHeader from "@/components/header/SiteHeader.vue";
-import {onMounted, onUnmounted} from "vue";
-import CartPopup from "@/components/cart/CartPopup.vue";
+import { onMounted, onUnmounted } from "vue";
+import CartDrawer from "@/components/cart/CartDrawer.vue";
+import MenuDrawer from "@/components/header/MenuDrawer.vue";
 
 function updateVhVar() {
   const doc = document.documentElement;
@@ -19,14 +20,15 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <SiteHeader/>
+  <SiteHeader />
 
-    <CartPopup/>
+  <CartDrawer />
+  <MenuDrawer />
 
   <main id="main">
     <RouterView v-slot="{ Component, route }">
       <Transition name="App" appear>
-          <component :is="Component" :key="route.fullPath"/>
+        <component :is="Component" :key="route.fullPath" />
       </Transition>
     </RouterView>
   </main>
