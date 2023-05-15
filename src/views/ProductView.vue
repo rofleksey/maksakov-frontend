@@ -148,10 +148,15 @@ onMounted(() => {
 
 .ProductView__BackNav {
   display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .ProductView__Nav {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .ProductView__BreadcrumbBack {
@@ -160,10 +165,10 @@ onMounted(() => {
 
 .ProductView__Nav,
 .ProductView__BackNav {
-  flex-direction: row;
   margin-top: 35px;
   margin-bottom: 60px;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .ProductView__Content {
@@ -215,7 +220,7 @@ onMounted(() => {
   }
 
   .ProductView__BackNav {
-    display: block;
+    display: flex;
   }
 
   .ProductView__Column {

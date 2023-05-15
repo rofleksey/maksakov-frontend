@@ -1,6 +1,6 @@
-import {createRouter, createWebHashHistory} from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import {useCartStore} from "@/stores/store";
+import { useCartStore, useMenuDrawerStore } from "@/stores/store";
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -48,6 +48,14 @@ router.beforeEach(() => {
   cartStore.restoreCart().catch((e) => {
     console.error(e);
   });
+
+  const menuDrawerStore = useMenuDrawerStore();
+
+  if (cartStore.isOpen || menuDrawerStore.isOpen) {
+    cartStore.close();
+    menuDrawerStore.close();
+    return false;
+  }
 });
 
 export default router;

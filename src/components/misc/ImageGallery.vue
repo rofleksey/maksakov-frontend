@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import {Carousel, Navigation, Pagination, Slide} from "vue3-carousel";
+import { Carousel, Navigation, Pagination, Slide } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
-import type {MImage} from "@/lib/api_types";
-import {computed, ref} from "vue";
+import type { MImage } from "@/lib/api_types";
+import { computed, ref } from "vue";
 
 interface Props {
   images: MImage[];
@@ -42,30 +42,30 @@ function onImageClick(index: number) {
       :autoplay="props.autoplay"
       :transition="props.transition"
       :mouseDrag="false"
-      :touchDrag="false"
+      :touchDrag="true"
       wrapAround
     >
-        <Slide v-for="(image, index) in props.images" :key="image.id">
-            <div
-                    :class="{ 'Gallery__item-container': true, zoom: props.zoom }"
-                    @click="onImageClick(index)"
-            >
-                <img :alt="`${image.id}`" :src="image.original"/>
-            </div>
-        </Slide>
+      <Slide v-for="(image, index) in props.images" :key="image.id">
+        <div
+          :class="{ 'Gallery__item-container': true, zoom: props.zoom }"
+          @click="onImageClick(index)"
+        >
+          <img :alt="`${image.id}`" :src="image.original" />
+        </div>
+      </Slide>
 
-        <template #addons>
-            <Navigation/>
-            <Pagination/>
-        </template>
+      <template #addons>
+        <Navigation />
+        <Pagination />
+      </template>
     </Carousel>
-      <vue-easy-lightbox
-              :visible="zoomVisible"
-              :imgs="imageOriginals"
-              :index="zoomIndex"
-              @hide="onZoomHide"
-      >
-      </vue-easy-lightbox>
+    <vue-easy-lightbox
+      :visible="zoomVisible"
+      :imgs="imageOriginals"
+      :index="zoomIndex"
+      @hide="onZoomHide"
+    >
+    </vue-easy-lightbox>
   </div>
 </template>
 
@@ -73,7 +73,7 @@ function onImageClick(index: number) {
 /* not scoped to set fill to white */
 .Gallery__Carousel .carousel__prev path,
 .Gallery__Carousel .carousel__next path {
-    fill: white;
+  fill: white;
 }
 
 .Gallery__item-container {

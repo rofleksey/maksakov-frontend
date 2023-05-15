@@ -8,6 +8,7 @@ import ProductCard from "@/components/misc/ProductCard.vue";
 import Gallery from "@/components/misc/ImageGallery.vue";
 import { useLastCategoryStore } from "@/stores/store";
 import Footer from "@/components/footer/SiteFooter.vue";
+import Skeleton from "@/components/misc/Skeleton.vue";
 
 const route = useRoute();
 const categoryId = computed(() => Number(route.query.id));
@@ -48,13 +49,16 @@ onMounted(() => {
       <Title light class="CategoryView__Title">
         {{ category?.name ?? "" }}
       </Title>
-      <div class="CategoryView__CategoryList">
+      <div class="CategoryView__CategoryList" v-if="products.length > 0">
         <ProductCard
           v-for="product in products"
           :category-id="categoryId"
           :key="product.id"
           :product="product"
         />
+      </div>
+      <div class="CategoryView__CategoryList" v-else>
+        <Skeleton v-for="num in 50" :key="num" width="306px" height="282px" />
       </div>
     </div>
 
@@ -87,6 +91,7 @@ onMounted(() => {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(306px, 1fr));
   align-items: start;
+  justify-items: center;
   max-width: 100%;
   grid-gap: 15px;
 }

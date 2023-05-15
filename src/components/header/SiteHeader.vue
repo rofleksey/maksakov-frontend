@@ -62,6 +62,11 @@ const menuDrawerStore = useMenuDrawerStore();
 }
 
 @media (max-width: 1000px) {
+  .Header__container {
+    justify-content: space-between;
+    width: 90%;
+  }
+
   .Header__HeaderMenu {
     display: none;
   }
