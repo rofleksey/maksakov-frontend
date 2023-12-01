@@ -1,14 +1,27 @@
 <template>
-    <div style="position: relative; overflow: hidden">
-        <iframe
-                src="https://yandex.ru/map-widget/v1/?indoorLevel=1&ll=30.379280%2C59.829093&mode=search&oid=1736153342&ol=biz&sll=30.315635%2C59.938951&sspn=0.965424%2C0.305606&text=%D0%A1%D0%B0%D0%BD%D0%BA%D1%82-%D0%9F%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3%2C%20%D0%91%D0%B0%D0%BB%D0%BA%D0%B0%D0%BD%D1%81%D0%BA%D0%B0%D1%8F%20%D0%BF%D0%BB%D0%BE%D1%89%D0%B0%D0%B4%D1%8C%20%D0%B4%D0%BE%D0%BC%205%20%D0%95%2C%20%D0%A2%D0%A0%D0%9A%20%22%D0%91%D0%B0%D0%BB%D0%BA%D0%B0%D0%BD%D1%81%D0%BA%D0%B8%D0%B9%22%202%2C%201%20%D1%8D%D1%82%D0%B0%D0%B6&z=16.68"
-                height="400"
-                frameborder="1"
-                allowfullscreen="true"
-                style="position: relative; width: 100%"
-        ></iframe>
-    </div>
+  <div style="position: relative; overflow: hidden">
+    <a
+      href="https://yandex.ru/maps/org/maksakov/203005472046/?utm_medium=mapframe&utm_source=maps"
+      style="color: #eee; font-size: 12px; position: absolute; top: 0px"
+      >Maksakov</a
+    ><a
+      href="https://yandex.ru/maps/2/saint-petersburg/category/bags_and_suitcases_store/184107955/?utm_medium=mapframe&utm_source=maps"
+      style="color: #eee; font-size: 12px; position: absolute; top: 14px"
+      >Магазин сумок и чемоданов в Санкт‑Петербурге</a
+    ><a
+      href="https://yandex.ru/maps/2/saint-petersburg/category/haberdashery_and_accessories_shop/184107935/?utm_medium=mapframe&utm_source=maps"
+      style="color: #eee; font-size: 12px; position: absolute; top: 28px"
+      >Магазин галантереи и аксессуаров в Санкт‑Петербурге</a
+    >
+    <iframe
+      src="https://yandex.ru/map-widget/v1/?from=mapframe&indoorLevel=1&ll=30.378872%2C59.829555&mode=search&oid=203005472046&ol=biz&sctx=ZAAAAAgBEAAaKAoSCeKvyRr1YD5AEadc4V0u6k1AEhIJzy9K0F%2FowT8R%2FkRlw5rKqj8iBgABAgMEBSgKOABAw54BSAFqAnJ1nQHNzEw9oAEAqAEAvQHOS%2Bt5wgEGrtrGoPQF6gEA8gEA%2BAEAggIh0LzQsNC60YHQsNC60L7QsiDQv9C%2B0YDRgtGE0LXQu9C4igIAkgIAmgIMZGVza3RvcC1tYXBz&sll=30.378872%2C59.829555&sspn=0.021951%2C0.006541&text=%D0%BC%D0%B0%D0%BA%D1%81%D0%B0%D0%BA%D0%BE%D0%B2%20%D0%BF%D0%BE%D1%80%D1%82%D1%84%D0%B5%D0%BB%D0%B8&z=17"
+      width="560"
+      height="400"
+      frameborder="1"
+      allowfullscreen="true"
+      style="position: relative"
+    ></iframe>
+  </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
