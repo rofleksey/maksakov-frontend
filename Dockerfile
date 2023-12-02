@@ -10,6 +10,7 @@ RUN npm run build
 FROM node:lts-alpine
 WORKDIR /app
 RUN npm install -g http-server
+RUN apk add --no-cache curl
 COPY --from=builder /app/dist /app/dist
 EXPOSE 8080
 CMD [ "http-server", "dist" ]
