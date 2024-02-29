@@ -62,6 +62,7 @@ export interface StrapiCategoryAttr extends StrapiBaseAttr {
   name: string;
   images: StrapiArray<StrapiImageAttr>;
   image_main: StrapiSingleton<StrapiImageAttr>;
+  products: StrapiArray<StrapiProductAttr>;
 }
 
 export interface StrapiSaleAttr extends StrapiBaseAttr {

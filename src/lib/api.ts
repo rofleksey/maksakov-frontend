@@ -1,5 +1,5 @@
 import axios from "axios";
-import {SALE_CATEGORY_ID} from "@/lib/misc";
+import { SALE_CATEGORY_ID } from "@/lib/misc";
 import SaleImg from "@/assets/sale.jpg";
 import type {
   MCategory,
@@ -42,7 +42,7 @@ function mapStrapiImage(image: StrapiItem<StrapiImageAttr>): MImage {
 }
 
 export async function fetchMisc(): Promise<MMisc> {
-  const {data}: { data: StrapiSingleton<StrapiMiscAttr> } = await axios.get(
+  const { data }: { data: StrapiSingleton<StrapiMiscAttr> } = await axios.get(
     `${BASE_API_URL}/misc`,
     {
       params: {
@@ -66,7 +66,7 @@ export async function fetchMisc(): Promise<MMisc> {
 }
 
 export async function fetchCategories(): Promise<MCategory[]> {
-  const {data}: { data: StrapiArray<StrapiCategoryAttr> } = await axios.get(
+  const { data }: { data: StrapiArray<StrapiCategoryAttr> } = await axios.get(
     `${BASE_API_URL}/product-categories`,
     {
       params: {
@@ -112,21 +112,18 @@ export async function fetchProducts(categoryId: number): Promise<MProduct[]> {
     return fetchSale();
   }
 
-  const {data}: { data: StrapiArray<StrapiProductAttr> } = await axios.get(
-    `${BASE_API_URL}/products`,
-    {
+  const { data }: { data: StrapiSingleton<StrapiCategoryAttr> } =
+    await axios.get(`${BASE_API_URL}/product-categories/${categoryId}`, {
       params: {
-        "filters[$and][0][category][id][$eq]": categoryId,
         publicationState: "live",
-        populate: "*",
+        populate: "deep,3",
       },
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }
-  );
+    });
 
-  return data.data.map((product) => ({
+  return data.data.attributes.products.data.map((product) => ({
     id: product.id,
     name: product.attributes.name,
     description: product.attributes.description,
@@ -159,7 +156,7 @@ export async function fetchCategory(id: number): Promise<MCategory> {
     };
   }
 
-  const {data}: { data: StrapiSingleton<StrapiCategoryAttr> } =
+  const { data }: { data: StrapiSingleton<StrapiCategoryAttr> } =
     await axios.get(`${BASE_API_URL}/product-categories/${id}`, {
       params: {
         publicationState: "live",
@@ -179,7 +176,7 @@ export async function fetchCategory(id: number): Promise<MCategory> {
 }
 
 export async function fetchProduct(id: number): Promise<MProduct> {
-  const {data}: { data: StrapiSingleton<StrapiProductAttr> } =
+  const { data }: { data: StrapiSingleton<StrapiProductAttr> } =
     await axios.get(`${BASE_API_URL}/products/${id}`, {
       params: {
         publicationState: "live",
@@ -212,7 +209,7 @@ export async function sendOrder(order: MOrder): Promise<void> {
 }
 
 async function fetchSale(): Promise<MProduct[]> {
-  const {data}: { data: StrapiSingleton<StrapiSaleAttr> } = await axios.get(
+  const { data }: { data: StrapiSingleton<StrapiSaleAttr> } = await axios.get(
     `${BASE_API_URL}/sale`,
     {
       params: {
