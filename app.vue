@@ -7,11 +7,12 @@
 </template>
 
 <script lang="ts" setup>
+// TODO: fix header scroll sometimes (catalog)
+// TODO: fix flicker
 // TODO: fix links
 // TODO: sitemap
 // TODO: check localstorage
 // TODO: test order
-
 // TODO: improve email
 
 function updateVhVar() {
@@ -28,10 +29,6 @@ onUnmounted(() => {
   window.removeEventListener("resize", updateVhVar);
 });
 </script>
-
-<style lang="sass">
-//@import @/assets/main.sass
-</style>
 
 <style lang="sass">
 .page-enter-active, .page-leave-active

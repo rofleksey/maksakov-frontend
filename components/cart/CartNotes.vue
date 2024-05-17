@@ -48,6 +48,7 @@ function onNotesInput(e: any) {
   cursor: pointer
   color: rgb(158, 112, 118)
   transition: color 0.4s ease, letter-spacing 0.4s ease
+  @apply flex flex-row items-center
 
   &.active
     letter-spacing: 1px

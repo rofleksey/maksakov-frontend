@@ -10,25 +10,27 @@ const {data} = await useFetchCategories()
   <div class="HeaderMenu">
     <div
         :class="{
-        HeaderMenu__item: true,
-        selected:
-          (route.name === 'catalog' ||
-            route.name === 'category' ||
-            route.name === 'product') &&
-          route.query.id !== '-1' &&
-          route.query.categoryId !== '-1',
-      }"
+          selected:
+            (route.name === 'catalog' ||
+              route.name === 'category' ||
+              route.name === 'product') &&
+            route.query.id !== '-1' &&
+            route.query.categoryId !== '-1',
+        }"
+        class="HeaderMenu__item"
         style="width: 80px"
-        @click="router.push('/catalog')"
     >
-      каталог
+      <NuxtLink class="w-full" to="/catalog">
+        каталог
+      </NuxtLink>
       <ul class="HeaderMenu__SubMenu">
         <li
             v-for="category in (data || [])"
             :key="category.id"
-            @click.stop="router.push(`/category/${category.id}`)"
         >
-          {{ category.name }}
+          <NuxtLink :to="`/category/${category.id}`" class="w-full">
+            {{ category.name }}
+          </NuxtLink>
         </li>
       </ul>
     </div>
@@ -42,23 +44,26 @@ const {data} = await useFetchCategories()
           (route.query.id === '-1' || route.query.categoryId === '-1'),
       }"
         style="width: 110px"
-        @click="router.push(`/category/${SALE_CATEGORY_ID}`)"
     >
-      распродажа
+      <NuxtLink :to="`/category/${SALE_CATEGORY_ID}`" class="w-full">
+        распродажа
+      </NuxtLink>
     </div>
     <div
         class="HeaderMenu__item"
         style="width: 160px"
-        @click="router.push('/delivery')"
     >
-      доставка и оплата
+      <NuxtLink class="w-full" to="/delivery">
+        доставка и оплата
+      </NuxtLink>
     </div>
     <div
         class="HeaderMenu__item"
         style="width: 100px"
-        @click="router.push('/contacts')"
     >
-      контакты
+      <NuxtLink class="w-full" to="/contacts">
+        контакты
+      </NuxtLink>
     </div>
   </div>
 </template>
@@ -68,7 +73,7 @@ const {data} = await useFetchCategories()
   @apply flex flex-row flex-nowrap items-center gap-[25px] text-[15px]
 
 .HeaderMenu__item
-  @apply relative box-content text-center cursor-pointer shrink-0 font-bold px-[5px] py-2.5
+  @apply relative box-content text-center shrink-0 font-bold px-[5px] py-2.5
   transition: color 0.25s ease 0s, letter-spacing 0.4s ease 0s
 
   &:hover
