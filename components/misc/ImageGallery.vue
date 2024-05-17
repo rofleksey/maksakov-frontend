@@ -69,26 +69,19 @@ function onImageClick(index: number) {
   </div>
 </template>
 
-<style>
+<style lang="sass">
 /* not scoped to set fill to white */
 .Gallery__Carousel .carousel__prev path,
-.Gallery__Carousel .carousel__next path {
-  fill: white;
-}
+.Gallery__Carousel .carousel__next path
+  @apply fill-white
 
-.Gallery__item-container {
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+.Gallery__item-container
+  @apply overflow-hidden flex justify-center items-center
 
-.Gallery__item-container.zoom {
-  cursor: zoom-in;
-}
+.Gallery__item-container.zoom
+  @apply cursor-zoom-in
 
-.Gallery__item-container img {
-  height: auto;
-  width: 100%;
-}
+.Gallery__item-container img
+  @apply h-auto w-full
+
 </style>

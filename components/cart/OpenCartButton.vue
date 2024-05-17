@@ -17,26 +17,16 @@ function onClick() {
   </button>
 </template>
 
-<style scoped>
-.OpenCartButton {
-  font: var(--font-din-next);
-  font-size: 14px;
-  color: white;
-  background-color: #9e7076;
-  cursor: pointer;
-  padding: 8px 16px;
-  width: 100%;
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
-  border-radius 0.3s ease;
-}
+<style lang="sass" scoped>
+.OpenCartButton
+  font: var(--font-din-next)
+  @apply text-sm text-[white] bg-[#9e7076] cursor-pointer w-full px-4 py-2
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-radius 0.3s ease
 
-.OpenCartButton:hover {
-  background-color: rgba(158, 112, 118, 0.7);
-  color: rgba(255, 255, 255, 0.7);
-  border-radius: 5px;
-}
+  &:hover
+    @apply bg-[rgba(158,112,118,0.7)] text-[rgba(255,255,255,0.7)] rounded-[5px]
 
-.AddToCartButton span {
-  line-height: 1.5;
-}
+.AddToCartButton span
+  line-height: 1.5
+
 </style>

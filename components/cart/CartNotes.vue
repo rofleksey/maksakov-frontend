@@ -18,11 +18,8 @@ function onNotesInput(e: any) {
 <template>
   <div class="CartNotes">
     <div
-        :class="{
-        CartNotes__Button: true,
-        'no-select': true,
-        active: notesActive,
-      }"
+        :class="{active: notesActive}"
+        class="CartNotes__Button no-select"
         @click="notesOpen = !notesOpen"
     >
       <IconNotes class="CartNotes__Icon"/>
@@ -39,74 +36,47 @@ function onNotesInput(e: any) {
   </div>
 </template>
 
-<style scoped>
-.CartNotes {
-  font: var(--font-din-next);
-  font-size: 16px;
-  flex-shrink: 0;
-  align-self: flex-start;
-  width: 350px;
-}
+<style lang="sass" scoped>
+.CartNotes
+  font: var(--font-din-next)
+  @apply text-base shrink-0 self-start w-[350px]
 
-.CartNotes__Edit {
-  margin-top: 8px;
-  height: 140px;
-  width: 100%;
-}
+.CartNotes__Edit
+  @apply h-[140px] w-full mt-2
 
-.CartNotes__Button {
-  cursor: pointer;
-  color: rgb(158, 112, 118);
-  transition: color 0.4s ease, letter-spacing 0.4s ease;
-}
+.CartNotes__Button
+  cursor: pointer
+  color: rgb(158, 112, 118)
+  transition: color 0.4s ease, letter-spacing 0.4s ease
 
-.CartNotes__Button.active {
-  letter-spacing: 1px;
-  color: coral;
-}
+  &.active
+    letter-spacing: 1px
+    color: coral
 
-.CartNotes__Button:hover {
-  color: rgba(158, 112, 118, 0.5);
-}
+  &:hover
+    color: rgba(158, 112, 118, 0.5)
 
-.CartNotes__Icon {
-  margin-right: 8px;
-}
+.CartNotes__Icon
+  margin-right: 8px
 
-.CartNotes__Edit__Container {
-  padding: 8px 0;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-}
+.CartNotes__Edit__Container
+  @apply h-full w-full overflow-hidden px-0 py-2
 
-.CartNotes__Edit__TextArea {
-  position: relative;
-  left: -500px;
-  font: var(--font-din-next);
-  color: var(--color-secondary);
-  border: 1px solid var(--color-secondary);
-  border-radius: 0;
-  resize: none;
-  height: 100%;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 12px;
-  overflow: hidden;
-  background-color: inherit;
-  transition: left 0.15s ease;
-}
+.CartNotes__Edit__TextArea
+  font: var(--font-din-next)
+  @apply relative left-[-500px] text-[color:var(--color-secondary)] border border-[color:var(--color-secondary)]
+  @apply resize-none h-full w-full box-border overflow-hidden bg-inherit p-3 rounded-none border-solid
+  transition: left 0.15s ease
 
-.CartNotes__Edit__TextArea.active {
-  left: 0;
-}
+  &.active
+    left: 0
 
-textarea::placeholder {
-  color: var(--color-secondary);
-  opacity: 0.5;
-}
+textarea
+  &::placeholder
+    color: var(--color-secondary)
+    opacity: 0.5
 
-textarea:focus {
-  outline: 0;
-}
+  &:focus
+    outline: 0
+
 </style>

@@ -25,43 +25,26 @@ import IconEmail from "@/components/icons/IconEmail.vue";
   </footer>
 </template>
 
-<style scoped>
-.Footer {
-  position: absolute;
-  bottom: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
-  flex-wrap: nowrap;
-  background-color: rgb(83, 81, 81);
-  /*width: calc(100vw - (100vw - 100%));*/
-  width: 100%;
-  padding: 15px 0;
-  animation: fadein 1s forwards;
-  animation-delay: 1s;
-  opacity: 0;
-}
+<style lang="sass" scoped>
+.Footer
+  @apply absolute flex flex-row justify-center items-center gap-[25px] flex-nowrap bg-[rgb(83,81,81)]
+  @apply w-full animate-[fadein_1s_forwards] opacity-0 px-0 py-[15px] bottom-0
+  animation-delay: 1s
 
-.Footer__Text {
-  color: white;
-  font: var(--font-din-next);
-  font-size: 16px;
-}
+.Footer__Text
+  color: white
+  font: var(--font-din-next)
+  font-size: 16px
 
-@media (max-width: 767px) {
-  .Footer__Text {
-    display: none;
-  }
-}
+@media (max-width: 767px)
+  .Footer__Text
+    display: none
 
-@keyframes fadein {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
+@keyframes fadein
+  from
+    opacity: 0
+
+  to
+    opacity: 1
+
 </style>

@@ -33,23 +33,20 @@ onMounted(() => {
   </div>
 </template>
 
-<style>
-.ContactsView__Column {
-  max-width: 956px;
-  width: 100%;
-}
+<style lang="sass">
+.ContactsView__Column
+  max-width: 956px
+  width: 100%
 
-.ContactsView__Gallery .carousel_slide {
-  max-width: 956px;
-  max-height: 467px;
-}
+.ContactsView__Gallery
+  .carousel_slide
+    max-width: 956px
+    max-height: 467px
 
-.ContactsView__Gallery .Gallery__item-container {
-  width: 100%;
-  max-height: 467px;
-}
+  .Gallery__item-container
+    width: 100%
+    max-height: 467px
 
-.ContactsView__Markdown {
-  margin: 10px;
-}
+.ContactsView__Markdown
+  margin: 10px
 </style>

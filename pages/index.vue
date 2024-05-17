@@ -38,33 +38,28 @@ onMounted(() => {
   </div>
 </template>
 
-<style scoped>
-.HomeView__Maksakov {
-  margin-top: 22px;
-}
+<style lang="sass" scoped>
+.HomeView__Maksakov
+  margin-top: 22px
 
-.HomeView__Maksakov-separator {
-  margin-top: 34px;
-  width: 219px;
-}
+.HomeView__Maksakov-separator
+  margin-top: 34px
+  width: 219px
 
-.HomeView__content {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 50px;
-  margin-top: 50px;
-  flex-wrap: wrap-reverse;
-  width: 100%;
-}
+.HomeView__content
+  display: flex
+  flex-direction: row
+  justify-content: center
+  gap: 50px
+  margin-top: 50px
+  flex-wrap: wrap-reverse
+  width: 100%
 
-.HomeView__content .CategoryButtonColumn {
-  flex-shrink: 0;
-}
+  .CategoryButtonColumn
+    flex-shrink: 0
 
-.HomeView__content .HomeView__Markdown {
-  max-width: 570px;
-  flex-shrink: 1;
-  padding: 10px;
-}
+  .HomeView__Markdown
+    max-width: 570px
+    flex-shrink: 1
+    padding: 10px
 </style>

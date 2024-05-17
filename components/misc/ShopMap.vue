@@ -3,16 +3,18 @@
     <a
         href="https://yandex.ru/maps/org/maksakov/203005472046/?utm_medium=mapframe&utm_source=maps"
         style="color: #eee; font-size: 12px; position: absolute; top: 0"
-    >Maksakov</a
-    ><a
-      href="https://yandex.ru/maps/2/saint-petersburg/category/bags_and_suitcases_store/184107955/?utm_medium=mapframe&utm_source=maps"
-      style="color: #eee; font-size: 12px; position: absolute; top: 14px"
-  >Магазин сумок и чемоданов в Санкт‑Петербурге</a
-  ><a
-      href="https://yandex.ru/maps/2/saint-petersburg/category/haberdashery_and_accessories_shop/184107935/?utm_medium=mapframe&utm_source=maps"
-      style="color: #eee; font-size: 12px; position: absolute; top: 28px"
-  >Магазин галантереи и аксессуаров в Санкт‑Петербурге</a
-  >
+    >Maksakov</a>
+
+    <a
+        href="https://yandex.ru/maps/2/saint-petersburg/category/bags_and_suitcases_store/184107955/?utm_medium=mapframe&utm_source=maps"
+        style="color: #eee; font-size: 12px; position: absolute; top: 14px"
+    >Магазин сумок и чемоданов в Санкт‑Петербурге</a>
+
+    <a
+        href="https://yandex.ru/maps/2/saint-petersburg/category/haberdashery_and_accessories_shop/184107935/?utm_medium=mapframe&utm_source=maps"
+        style="color: #eee; font-size: 12px; position: absolute; top: 28px"
+    >Магазин галантереи и аксессуаров в Санкт‑Петербурге</a>
+
     <iframe
         allowfullscreen="true"
         frameborder="1"
@@ -23,5 +25,3 @@
     ></iframe>
   </div>
 </template>
-
-<style scoped></style>

@@ -16,8 +16,30 @@ const categoryId = computed(() => Number(route.query.categoryId));
 const {data: category} = await useFetchCategory(categoryId.value)
 const {data: products} = await useFetchProducts(categoryId.value)
 
-const product = computed(() => products.value?.find((p) => p.id === productId.value));
-const productIndex = computed(() => products.value?.findIndex((p) => p.id === productId.value) ?? -1);
+const product = useState<MProduct | null>('productPageProduct', () => null);
+const productIndex = useState<number>('productPageIndex', () => -1);
+
+watch(productId, () => {
+  const newProduct = products.value?.find((p) => p.id === productId.value) || null
+  if (!newProduct) {
+    return
+  }
+
+  product.value = newProduct
+}, {
+  immediate: true
+})
+
+watch(productId, () => {
+  const newIndex = products.value?.findIndex((p) => p.id === productId.value) ?? -1
+  if (newIndex < 0) {
+    return
+  }
+
+  productIndex.value = newIndex
+}, {
+  immediate: true
+})
 
 const prevProductLink = computed(() => {
   if (productIndex.value === -1 || productIndex.value === 0) {

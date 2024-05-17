@@ -35,32 +35,28 @@ onMounted(() => {
   </div>
 </template>
 
-<style>
-.CatalogView__Title {
-  margin-top: 20px;
-  margin-bottom: 25px;
-}
+<style lang="sass">
+.CatalogView__Title
+  margin-top: 20px
+  margin-bottom: 25px
 
-.CatalogView__Title-separator {
-  width: 100%;
-  margin-bottom: 30px;
-}
+.CatalogView__Title-separator
+  width: 100%
+  margin-bottom: 30px
 
-.CatalogView__CategoryContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-width: 828px;
-  width: 100%;
-}
+.CatalogView__CategoryContainer
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  max-width: 828px
+  width: 100%
 
-.CatalogView__CategoryList {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(391px, 1fr));
-  align-items: start;
-  grid-column-gap: 45px;
-  grid-row-gap: 25px;
-  max-width: 100%;
-}
+.CatalogView__CategoryList
+  display: grid
+  grid-template-columns: repeat(auto-fill, minmax(391px, 1fr))
+  align-items: start
+  grid-column-gap: 45px
+  grid-row-gap: 25px
+  max-width: 100%
 </style>

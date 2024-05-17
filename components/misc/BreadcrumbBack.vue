@@ -10,7 +10,7 @@ const props = defineProps<Props>();
 </script>
 
 <template>
-  <div class="BreadcrumbBack no-select">
+  <div class="BreadcrumbBack no-select capitalize flex flex-row gap-[5px]">
     <IconPrev/>
     <RouterLink :to="props.link">
       {{ props.text }}
@@ -18,13 +18,8 @@ const props = defineProps<Props>();
   </div>
 </template>
 
-<style scoped>
-.BreadcrumbBack {
-  color: var(--color-secondary);
-  font: var(--font-din-next);
-  text-transform: capitalize;
-  display: flex;
-  flex-direction: row;
-  gap: 5px;
-}
+<style lang="sass" scoped>
+.BreadcrumbBack
+  font: var(--font-din-next)
+  color: var(--color-secondary)
 </style>

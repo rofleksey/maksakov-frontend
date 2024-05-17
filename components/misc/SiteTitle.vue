@@ -9,27 +9,19 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div :class="{ Title: true, light: props.light, heavy: !props.light }">
+  <div
+      :class="{ light: props.light, heavy: !props.light }"
+      class="w-full text-[color:var(--color-secondary)] text-center">
     <slot></slot>
   </div>
 </template>
 
-<style scoped>
-.Title {
-  width: 100%;
-  color: var(--color-secondary);
-  text-align: center;
-}
+<style lang="sass" scoped>
+.heavy
+  font: var(--font-din-next)
+  @apply font-bold tracking-[10.8px] text-4xl
 
-.Title.heavy {
-  font: var(--font-din-next);
-  font-weight: 700;
-  letter-spacing: 10.8px;
-  font-size: 36px;
-}
-
-.Title.light {
-  font: var(--font-raleway);
-  font-size: 28px;
-}
+.light
+  font: var(--font-raleway)
+  @apply text-[28px]
 </style>

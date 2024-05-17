@@ -17,28 +17,19 @@ const emit = defineEmits(["submit"]);
   </button>
 </template>
 
-<style scoped>
-.CartSubmit {
-  font: var(--font-din-next);
-  font-size: 16px;
-  color: white;
-  background-color: rgb(158, 112, 118);
-  cursor: pointer;
-  padding: 8px 16px;
-  width: 100%;
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-}
+<style lang="sass" scoped>
+.CartSubmit
+  font: var(--font-din-next)
+  @apply text-base text-[white] bg-[rgb(158,112,118)] cursor-pointer w-full px-4 py-2
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out
 
-.CartSubmit.loading {
-  animation: ldx-bounce 1s infinite linear;
-}
+  &.loading
+    animation: ldx-bounce 1s infinite linear
 
-.CartSubmit:hover {
-  background-color: rgba(158, 112, 118, 0.8);
-  color: rgba(255, 255, 255, 0.7);
-}
+  &:hover
+    background-color: rgba(158, 112, 118, 0.8)
+    color: rgba(255, 255, 255, 0.7)
 
-.CartSubmit span {
-  line-height: 1.5;
-}
+  span
+    line-height: 1.5
 </style>

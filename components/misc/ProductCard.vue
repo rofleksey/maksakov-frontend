@@ -67,82 +67,41 @@ const priceStr = computed(() => formatPrice(props.product.price));
   </div>
 </template>
 
-<style scoped>
-.ProductCard {
-  position: relative;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font: var(--font-din-next);
-  color: var(--color-secondary);
-  transition: background-color 0.25s ease 0s, letter-spacing 0.4s ease 0s;
-  text-align: center;
-  font-size: 16px;
-}
+<style lang="sass" scoped>
+.ProductCard
+  font: var(--font-din-next)
+  @apply relative cursor-pointer flex flex-col justify-center items-center text-[color:var(--color-secondary)] text-center text-base
+  transition: background-color 0.25s ease 0s, letter-spacing 0.4s ease 0s
 
-.ProductCard__img-container {
-  position: relative;
-  overflow: hidden;
-  width: 306px;
-  height: 204px;
-}
+.ProductCard__img-container
+  @apply relative overflow-hidden w-[306px] h-[204px]
 
-.ProductCard__img-container img {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 306px;
-  height: 204px;
-  object-fit: cover;
-  object-position: 50% 50%;
-  transition: opacity 250ms ease, filter 250ms ease;
-}
+  img
+    @apply absolute w-[306px] h-[204px] object-cover object-[50%_50%] inset-0
+    transition: opacity 250ms ease, filter 250ms ease
 
-.ProductCard__img-container img.active {
-  filter: brightness(130%);
-}
+    &.active
+      @apply brightness-[130%]
 
-.ProductCard__name {
-  margin-top: 16px;
-}
+.ProductCard__name
+  @apply mt-4
 
-.ProductCard__Separator {
-  width: 20px;
-  margin: 8px 0;
-}
+.ProductCard__Separator
+  @apply w-5 mx-0 my-2
 
-.ProductCard__Ribbon {
-  position: absolute;
-  left: 1px;
-  top: 1px;
-  z-index: 1;
-  background-color: #9e7076;
-  padding: 2px 12px;
-  font: var(--font-din-next);
-  color: white;
-}
+.ProductCard__Ribbon
+  font: var(--font-din-next)
+  @apply absolute z-[1] bg-[#9e7076] text-[white] px-3 py-0.5 left-px top-px
 
-.ProductCard-enter-active,
-.ProductCard-leave-active {
-}
+.ProductCard-enter-active, .ProductCard-leave-active
+  transition: opacity 1s ease
 
-.ProductCard-enter-from {
-  opacity: 0;
-}
+.ProductCard-enter-from
+  @apply opacity-0
 
-.ProductCard-enter-to {
-  opacity: 1;
-}
+.ProductCard-enter-to, .ProductCard-leave-from
+  @apply opacity-100
 
-.ProductCard-leave-from {
-  opacity: 1;
-}
-
-.ProductCard-leave-to {
-  opacity: 0;
-}
+.ProductCard-leave-to
+  @apply opacity-0
 </style>

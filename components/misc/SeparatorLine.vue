@@ -1,11 +1,3 @@
 <template>
-  <div class="Separator"></div>
+  <div class="h-px border-t-[color:var(--color-secondary)] border-t border-solid"></div>
 </template>
-
-<style scoped>
-.Separator {
-  transform-origin: center 0.5px;
-  height: 1px;
-  border-top: 1px solid var(--color-secondary);
-}
-</style>

@@ -4,19 +4,8 @@
   </div>
 </template>
 
-<style scoped>
-.Banner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-sizing: content-box;
-  font: var(--font-raleway);
-  width: 100%;
-  background-color: var(--color-banner);
-  height: 48px;
-  letter-spacing: 0.3em;
-  color: var(--color-secondary);
-  text-align: center;
-  font-size: 13px;
-}
+<style lang="sass" scoped>
+.Banner
+  font: var(--font-raleway)
+  @apply flex justify-center items-center box-content w-full bg-[color:var(--color-banner)] h-12 tracking-[0.3em] text-[color:var(--color-secondary)] text-center text-[13px]
 </style>

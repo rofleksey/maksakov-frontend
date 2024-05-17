@@ -16,15 +16,15 @@ const slashRef = ref("/");
 </script>
 
 <template>
-  <div class="Breadcrumb no-select">
+  <div class="Breadcrumb no-select capitalize">
     <template v-for="(segment, index) in props.segments" :key="segment.text">
       <span
           v-if="index === props.segments.length - 1"
-          class="Breadcrumb__link active"
+          class="py-0 px-[3px] opacity-60"
       >
         {{ segment.text }}
       </span>
-      <RouterLink v-else :to="segment.path" class="Breadcrumb__link">
+      <RouterLink v-else :to="segment.path" class="py-0 px-[3px]">
         {{ segment.text }}
       </RouterLink>
       <span v-if="index !== props.segments.length - 1">{{ slashRef }}</span>
@@ -32,18 +32,8 @@ const slashRef = ref("/");
   </div>
 </template>
 
-<style scoped>
-.Breadcrumb > * {
-  color: var(--color-secondary);
-  font: var(--font-din-next);
-  text-transform: capitalize;
-}
-
-.Breadcrumb__link {
-  padding: 0 3px;
-}
-
-.Breadcrumb__link.active {
-  opacity: 0.6;
-}
+<style lang="sass" scoped>
+.Breadcrumb > *
+  font: var(--font-din-next)
+  color: var(--color-secondary)
 </style>

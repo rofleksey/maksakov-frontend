@@ -46,55 +46,48 @@ function increaseCount() {
   </div>
 </template>
 
-<style scoped>
-.CartCounter {
-  position: relative;
-  border: 1px solid var(--color-secondary);
-  padding: 2px;
-  width: 55px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  height: 28px;
-  font-size: 12px;
-  font: var(--font-din-next);
-  text-align: center;
-  vertical-align: middle;
-}
+<style lang="sass" scoped>
+.CartCounter
+  position: relative
+  border: 1px solid var(--color-secondary)
+  padding: 2px
+  width: 55px
+  display: flex
+  flex-direction: row
+  justify-content: center
+  align-items: center
+  height: 28px
+  font-size: 12px
+  font: var(--font-din-next)
+  text-align: center
+  vertical-align: middle
 
-.CartCounter__button {
-  position: absolute;
-  opacity: 0.5;
-  transition: opacity 0.2s ease;
-}
+.CartCounter__button
+  position: absolute
+  opacity: 0.5
+  transition: opacity 0.2s ease
 
-.CartCounter__minus {
-  left: 3px;
-}
+.CartCounter__minus
+  left: 3px
 
-.CartCounter__plus {
-  right: 3px;
-}
+.CartCounter__plus
+  right: 3px
 
-.CartCounter__button.active {
-  opacity: 1;
-  cursor: pointer;
-}
+.CartCounter__button
+  &.active
+    opacity: 1
+    cursor: pointer
 
-.CartCounter__button.active:hover {
-  font-weight: bold;
-}
+    &:hover
+      font-weight: bold
 
-.CartCounter__button,
-.CartCounter__count {
-  padding: 0 5px;
-  display: inline-block;
-}
+  padding: 0 5px
+  display: inline-block
 
-.CartCounter__count {
-  position: relative;
-  top: 1px;
-  font-size: 12px;
-}
+.CartCounter__count
+  padding: 0 5px
+  display: inline-block
+  position: relative
+  top: 1px
+  font-size: 12px
 </style>

@@ -65,77 +65,68 @@ function gotoItemPage() {
   </div>
 </template>
 
-<style scoped>
-.CartCardLarge {
-  position: relative;
-  padding: 32px 0;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  font: var(--font-din-next);
-  border-bottom: 1px solid rgba(48, 49, 50, 0.2);
-}
+<style lang="sass" scoped>
+.CartCardLarge
+  position: relative
+  padding: 32px 0
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  justify-content: space-between
+  font: var(--font-din-next)
+  border-bottom: 1px solid rgba(48, 49, 50, 0.2)
 
-.CartCardLarge__ImgContainer {
-  width: 100px;
-  height: 66px;
-  cursor: pointer;
-}
+.CartCardLarge__ImgContainer
+  width: 100px
+  height: 66px
+  cursor: pointer
 
-.CartCardLarge__ImgContainer img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  background: transparent;
-}
+  img
+    width: 100%
+    height: 100%
+    object-fit: cover
+    object-position: center
+    background: transparent
 
-.CartCardLarge__Info {
-  width: 254px;
-  margin-left: 10px;
-}
+.CartCardLarge__Info
+  width: 254px
+  margin-left: 10px
 
-.CartCardLarge__Name {
-  font-size: 16px;
-  line-height: 24px;
-}
+.CartCardLarge__Name
+  font-size: 16px
+  line-height: 24px
 
-.CartCardLarge__Price {
-  font-size: 14px;
-  line-height: 20px;
-  margin-top: 10px;
-}
+.CartCardLarge__Price
+  font-size: 14px
+  line-height: 20px
+  margin-top: 10px
 
-.CartCardLarge__TotalPriceContainer {
-  display: flex;
-  flex-direction: row;
-  margin: 5px;
-}
+.CartCardLarge__TotalPriceContainer
+  display: flex
+  flex-direction: row
+  margin: 5px
 
-.CartCardLarge__TotalPrice {
-  font-size: 16px;
-  margin-top: 4px;
-  width: 100px;
-  text-align: center;
-}
+.CartCardLarge__TotalPrice
+  font-size: 16px
+  margin-top: 4px
+  width: 100px
+  text-align: center
 
-.CartCardLarge__CloseButton {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 12px;
-  height: 12px;
-  cursor: pointer;
-  padding: 12px;
-  opacity: 0.5;
-  transition: opacity 0.15s ease;
-}
+.CartCardLarge__CloseButton
+  position: absolute
+  top: 5px
+  right: 5px
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 12px
+  height: 12px
+  cursor: pointer
+  padding: 12px
+  opacity: 0.5
+  transition: opacity 0.15s ease
 
-.CartCardLarge__CloseButton:hover {
-  opacity: 1;
-}
+  &:hover
+    opacity: 1
+
 </style>

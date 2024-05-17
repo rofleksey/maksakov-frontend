@@ -14,47 +14,43 @@ const props = defineProps<Props>();
   <div class="Pagination no-select">
     <component
         :is="props.prevLink ? 'router-link' : 'span'"
-        :class="{ Pagination__prev: true, disabled: props.prevLink === null }"
+        :class="{ disabled: props.prevLink === null }"
+        class="Pagination__prev link"
         :to="prevLink"
     >
-      <IconPrev/>
+      <IconPrev class="icon"/>
       Назад
     </component>
     <component
         :is="props.nextLink ? 'router-link' : 'span'"
-        :class="{ Pagination__next: true, disabled: props.nextLink === null }"
+        :class="{ disabled: props.nextLink === null }"
+        class="Pagination__next link"
         :to="nextLink"
     >
       Вперед
-      <IconNext/>
+      <IconNext class="icon"/>
     </component>
   </div>
 </template>
 
-<style scoped>
-.Pagination {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  font: var(--font-din-next);
-}
+<style lang="sass" scoped>
+.Pagination
+  font: var(--font-din-next)
+  @apply flex flex-row justify-center
 
 .Pagination__prev.disabled,
-.Pagination__next.disabled {
-  opacity: 0.6;
-}
+.Pagination__next.disabled
+  @apply opacity-60
 
-.Pagination__prev svg,
-.Pagination__next svg {
-  transform: rotate(0deg) translateY(3.5px);
-}
+.Pagination__next::before
+  margin: 0 10px
+  content: "|"
+  display: inline-block
+  height: 16px
 
-.Pagination__next::before {
-  border-left: 1px solid #303132;
-  margin: 0 10px;
-  content: "";
-  display: inline-block;
-  height: 16px;
-  transform: translateY(3.5px);
-}
+.link
+  @apply flex flex-row justify-center items-center
+
+.icon
+  @apply mx-1
 </style>

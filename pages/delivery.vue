@@ -28,29 +28,24 @@ onMounted(() => {
   </div>
 </template>
 
-<style scoped>
-.DeliveryView__Column {
-  max-width: 825px;
-}
+<style lang="sass" scoped>
+.DeliveryView__Column
+  max-width: 825px
 
-.DeliveryView__Cover {
-  width: 100%;
-  max-height: 416px;
-}
+.DeliveryView__Cover
+  width: 100%
+  max-height: 416px
 
-.DeliveryView__Cover img {
-  width: 100%;
-  max-height: 416px;
-  object-fit: cover;
-  object-position: 50% 50%;
-}
+  img
+    width: 100%
+    max-height: 416px
+    object-fit: cover
+    object-position: 50% 50%
 
-.DeliveryView__Separator {
-  margin-top: 16px;
-  margin-bottom: 14px;
-}
+.DeliveryView__Separator
+  margin-top: 16px
+  margin-bottom: 14px
 
-.DeliveryView__Markdown {
-  margin: 10px;
-}
+.DeliveryView__Markdown
+  margin: 10px
 </style>

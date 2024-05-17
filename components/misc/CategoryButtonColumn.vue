@@ -9,7 +9,7 @@ const props = defineProps<Props>();
 </script>
 
 <template>
-  <div class="CategoryButtonColumn">
+  <div class="flex flex-col items-start gap-[5px] w-[280px]">
     <CategoryButton
         v-for="category in props.categories"
         :id="category.id"
@@ -20,12 +20,5 @@ const props = defineProps<Props>();
   </div>
 </template>
 
-<style scoped>
-.CategoryButtonColumn {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  gap: 5px;
-  width: 280px;
-}
+<style lang="sass" scoped>
 </style>

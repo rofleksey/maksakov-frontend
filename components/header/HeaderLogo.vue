@@ -1,48 +1,22 @@
 <template>
-  <RouterLink class="HeaderLogo" to="/">
+  <RouterLink class="flex flex-row items-center gap-2.5 cursor-pointer" to="/">
     <img alt="logo" class="HeaderLogo__img" src="@/assets/logo.png"/>
-    <div class="HeaderLogo__title">
-      <div class="HeaderLogo__title__primary">МАКСАКОВ</div>
+    <div class="mt-2.5">
+      <div class="text-[27px] font-bold text-[color:var(--color-primary)] mb-2">МАКСАКОВ</div>
       <div class="HeaderLogo__title__secondary">изделия ручной работы</div>
     </div>
   </RouterLink>
 </template>
 
-<style scoped>
-.HeaderLogo {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-}
+<style lang="sass" scoped>
+.HeaderLogo__title__secondary
+  font: var(--font-din-next)
+  @apply text-[15px] text-[color:var(--color-secondary)]
 
-.HeaderLogo__title {
-  margin-top: 10px;
-}
+.HeaderLogo__img
+  @apply w-[79px] h-[63px] object-cover
 
-.HeaderLogo__title__primary {
-  font-size: 27px;
-  font-weight: bold;
-  color: var(--color-primary);
-  margin-bottom: 8px;
-}
-
-.HeaderLogo__title__secondary {
-  font-size: 15px !important;
-  color: var(--color-secondary);
-  font: var(--font-din-next);
-}
-
-.HeaderLogo__img {
-  width: 79px;
-  height: 63px;
-  object-fit: cover;
-}
-
-@media (max-width: 1000px) {
-  .HeaderLogo__img {
-    display: none;
-  }
-}
+@media (max-width: 1000px)
+  .HeaderLogo__img
+    display: none
 </style>

@@ -55,66 +55,58 @@ function gotoItemPage() {
   </div>
 </template>
 
-<style scoped>
-.CartCardSmall {
-  padding-bottom: 30px;
-  margin-bottom: 30px;
-  border-bottom: 1px solid #d3d3d3;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-}
+<style lang="sass" scoped>
+.CartCardSmall
+  padding-bottom: 30px
+  margin-bottom: 30px
+  border-bottom: 1px solid #d3d3d3
+  position: relative
+  display: flex
+  flex-direction: row
 
-.CartCardSmall__Info {
-  width: 170px;
-}
+.CartCardSmall__Info
+  width: 170px
 
-.CartCardSmall__ImgContainer {
-  width: 80px;
-  height: 80px;
-  margin-right: 10px;
-  cursor: pointer;
-}
+.CartCardSmall__ImgContainer
+  width: 80px
+  height: 80px
+  margin-right: 10px
+  cursor: pointer
 
-.CartCardSmall__ImgContainer img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  background: transparent;
-}
+  img
+    width: 100%
+    height: 100%
+    object-fit: cover
+    object-position: center
+    background: transparent
 
-.CartCardSmall__name {
-  color: var(--color-secondary);
-  font-size: 16px;
-  font-weight: lighter;
-  line-height: 1.5em;
-  width: 90%;
-  word-break: break-word;
-}
+.CartCardSmall__name
+  color: var(--color-secondary)
+  font-size: 16px
+  font-weight: lighter
+  line-height: 1.5em
+  width: 90%
+  word-break: break-word
 
-.CartCardSmall__price {
-  font-weight: 600;
-}
+.CartCardSmall__price
+  font-weight: 600
 
-.CartCardSmall__CloseButton {
-  cursor: pointer;
-  position: absolute;
-  text-align: center;
-  transition: opacity 0.2s ease;
-  opacity: 0.4;
-  top: -10px;
-  right: 0;
-  padding: 6px;
-  width: 24px;
-  height: 24px;
-}
+.CartCardSmall__CloseButton
+  cursor: pointer
+  position: absolute
+  text-align: center
+  transition: opacity 0.2s ease
+  opacity: 0.4
+  top: -10px
+  right: 0
+  padding: 6px
+  width: 24px
+  height: 24px
 
-.CartCardSmall:hover .CartCardSmall__CloseButton {
-  opacity: 1;
-}
+.CartCardSmall:hover .CartCardSmall__CloseButton
+  opacity: 1
 
-.CartCardSmall__counter {
-  margin-top: 8px;
-}
+.CartCardSmall__counter
+  margin-top: 8px
+
 </style>

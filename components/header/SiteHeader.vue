@@ -19,61 +19,32 @@ const menuDrawerStore = useMenuDrawerStore();
   </header>
 </template>
 
-<style scoped>
-.Header {
-  z-index: 50;
-  position: fixed;
-  top: 0;
-  display: flex;
-  box-sizing: content-box;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-  width: calc(100vw - (100vw - 100%));
-  height: var(--header-height);
-}
+<style lang="sass" scoped>
+.Header
+  @apply z-50 fixed flex box-content flex-col justify-center items-center bg-white
+  @apply w-[calc(100vw_-_(100vw_-_100%))] h-[var(--header-height)] top-0
 
-.Header__container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: nowrap;
-  gap: 50px;
-  width: 100%;
-}
+.Header__container
+  @apply flex flex-row justify-center items-center flex-nowrap gap-[50px] w-full
 
-.Header__IconCart {
-  width: 33px;
-  height: 39px;
-  flex-shrink: 0;
-}
+.Header__IconCart
+  @apply w-[33px] h-[39px] shrink-0
 
-.Header__IconMenu {
-  display: none;
-  width: 32px;
-  height: 32px;
-  flex-shrink: 0;
-  cursor: pointer;
-}
+.Header__IconMenu
+  @apply hidden w-8 h-8 shrink-0 cursor-pointer
 
-@media (max-width: 1000px) {
-  .Header__container {
-    justify-content: space-between;
-    width: 90%;
-  }
+@media (max-width: 1000px)
+  .Header__container
+    justify-content: space-between
+    width: 90%
 
-  .Header__HeaderMenu {
-    display: none;
-  }
+  .Header__HeaderMenu
+    display: none
 
-  .Header__IconMenu {
-    display: block;
-  }
+  .Header__IconMenu
+    display: block
 
-  .Header__container {
-    gap: 33px;
-  }
-}
+  .Header__container
+    gap: 33px
+
 </style>

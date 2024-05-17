@@ -7,30 +7,20 @@ const props = defineProps<Props>();
 </script>
 
 <template>
-  <a :href="href" class="FooterIcon" target="”_blank”">
+  <a :href="props.href" class="FooterIcon" target="”_blank”">
     <slot></slot>
   </a>
 </template>
 
-<style>
-.FooterIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 35px;
-  height: 35px;
-  background-color: white;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background-color 0.15s ease;
-}
+<style lang="sass">
+.FooterIcon
+  @apply flex items-center justify-center w-[35px] h-[35px] bg-white cursor-pointer
+  @apply transition-[background-color] duration-[0.15s] ease-[ease] rounded-[50%]
 
-.FooterIcon > * {
-  width: 25px;
-  height: 25px;
-}
+  > *
+    @apply w-[25px] h-[25px]
 
-.FooterIcon:hover {
-  background-color: rgb(150, 150, 150);
-}
+  &:hover
+    background-color: rgb(150, 150, 150)
+
 </style>

@@ -63,74 +63,38 @@ const {data} = await useFetchCategories()
   </div>
 </template>
 
-<style scoped>
-.HeaderMenu {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  gap: 25px;
-  font-size: 15px;
-}
+<style lang="sass" scoped>
+.HeaderMenu
+  @apply flex flex-row flex-nowrap items-center gap-[25px] text-[15px]
 
-.HeaderMenu__item {
-  position: relative;
-  box-sizing: content-box;
-  text-align: center;
-  cursor: pointer;
-  flex-shrink: 0;
-  padding: 10px 5px;
-  font-weight: bold;
-  transition: color 0.25s ease 0s, letter-spacing 0.4s ease 0s;
-}
+.HeaderMenu__item
+  @apply relative box-content text-center cursor-pointer shrink-0 font-bold px-[5px] py-2.5
+  transition: color 0.25s ease 0s, letter-spacing 0.4s ease 0s
 
-.HeaderMenu__item > div {
-  width: 100%;
-  height: 100%;
-}
+  &:hover
+    color: var(--color-hovered)
+    letter-spacing: 1px
 
-.HeaderMenu__item:hover {
-  color: var(--color-hovered);
-  letter-spacing: 1px;
-}
+  > div
+    @apply w-full h-full
 
-.HeaderMenu__item.selected {
-  color: var(--color-selected);
-}
+  &.selected
+    color: var(--color-selected)
 
-.HeaderMenu__item.selected:hover {
-  color: var(--color-hovered);
-}
+    &:hover
+      color: var(--color-hovered)
 
-.HeaderMenu__SubMenu {
-  padding-top: 20px;
-  list-style: none;
-  position: absolute;
-  margin: 0 auto;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 300px;
-  text-align: center;
-}
+.HeaderMenu__SubMenu
+  @apply absolute -translate-x-2/4 w-[300px] text-center mx-auto my-0 pt-5 left-2/4
+  list-style: none
 
-.HeaderMenu__item:hover .HeaderMenu__SubMenu li {
-  display: block;
-  opacity: 1;
-  background: white;
-}
+.HeaderMenu__item:hover .HeaderMenu__SubMenu li
+  @apply block opacity-100 bg-white
 
-.HeaderMenu__SubMenu li {
-  color: var(--color-secondary);
-  letter-spacing: normal;
-  padding: 5px;
-  display: none;
-  opacity: 0;
-  transition: color 0.25s ease 0s, letter-spacing 0.4s ease 0s,
-  opacity 0.4s ease 0s;
-}
+.HeaderMenu__SubMenu li
+  @apply text-[color:var(--color-secondary)] tracking-[normal] hidden opacity-0 p-[5px]
+  transition: color 0.25s ease 0s, letter-spacing 0.4s ease 0s, opacity 0.4s ease 0s
 
-.HeaderMenu__SubMenu li:hover {
-  color: var(--color-hovered);
-  letter-spacing: 1px;
-}
+.HeaderMenu__SubMenu li:hover
+  @apply text-[color:var(--color-hovered)] tracking-[1px]
 </style>
