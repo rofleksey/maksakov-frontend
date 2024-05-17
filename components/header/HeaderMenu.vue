@@ -26,7 +26,7 @@ const {data} = await useFetchCategories()
         <li
             v-for="category in (data || [])"
             :key="category.id"
-            @click.stop="router.push(`/category?id=${category.id}`)"
+            @click.stop="router.push(`/category/${category.id}`)"
         >
           {{ category.name }}
         </li>
@@ -42,7 +42,7 @@ const {data} = await useFetchCategories()
           (route.query.id === '-1' || route.query.categoryId === '-1'),
       }"
         style="width: 110px"
-        @click="router.push(`/category?id=${SALE_CATEGORY_ID}`)"
+        @click="router.push(`/category/${SALE_CATEGORY_ID}`)"
     >
       распродажа
     </div>

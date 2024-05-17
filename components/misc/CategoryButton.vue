@@ -18,7 +18,7 @@ const props = withDefaults(defineProps<Props>(), {
 <template>
   <div
       :class="{ CategoryButton: true, 'no-select': true, big: props.big }"
-      @click="router.push(`/category?id=${props.id}`)"
+      @click="router.push(`/category/${props.id}`)"
   >
     <div class="CategoryButton__img-container">
       <img :alt="props.name" :src="props.img"/>

@@ -34,7 +34,7 @@ function openPage(page: string) {
           </div>
           <div
               class="MenuDrawer__item"
-              @click="openPage(`/category?id=${SALE_CATEGORY_ID}`)"
+              @click="openPage(`/category/${SALE_CATEGORY_ID}`)"
           >
             распродажа
           </div>

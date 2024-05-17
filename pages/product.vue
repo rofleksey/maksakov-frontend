@@ -56,7 +56,7 @@ const breadcrumbSegments = computed(() => [
   },
   {
     text: category.value?.name ?? "",
-    path: `/category?id=${categoryId.value}`,
+    path: `/category/${categoryId.value}`,
   },
   {
     text: product.value?.name ?? "",
@@ -74,7 +74,7 @@ onMounted(() => {
     <div class="ProductView__Column">
       <nav class="ProductView__BackNav">
         <BreadcrumbBack
-            :link="`/category?id=${categoryId}`"
+            :link="`/category/${categoryId}`"
             :text="category?.name ?? ''"
             class="ProductView__BreadcrumbBack"
         />

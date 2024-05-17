@@ -1,14 +1,14 @@
 <script lang="ts" setup>
 import {computed, onMounted} from "vue";
 import {useRoute} from "vue-router";
-import Title from "@/components/misc/SiteTitle.vue";
-import ProductCard from "@/components/misc/ProductCard.vue";
-import Gallery from "@/components/misc/ImageGallery.vue";
-import Footer from "@/components/footer/SiteFooter.vue";
-import Skeleton from "@/components/misc/Skeleton.vue";
+import Title from "~/components/misc/SiteTitle.vue";
+import ProductCard from "~/components/misc/ProductCard.vue";
+import Gallery from "~/components/misc/ImageGallery.vue";
+import Footer from "~/components/footer/SiteFooter.vue";
+import Skeleton from "~/components/misc/Skeleton.vue";
 
 const route = useRoute();
-const categoryId = computed(() => Number(route.query.id));
+const categoryId = computed(() => Number(route.params.id));
 
 const {data: category} = await useFetchCategory(categoryId.value)
 const {data: products} = await useFetchProducts(categoryId.value)

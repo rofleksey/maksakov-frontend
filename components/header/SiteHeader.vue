@@ -41,9 +41,6 @@ const menuDrawerStore = useMenuDrawerStore();
   align-items: center;
   flex-wrap: nowrap;
   gap: 50px;
-  padding: 25px 0;
-  border-top: 1px solid rgba(var(--rgba-primary-faint));
-  border-bottom: 1px solid rgba(var(--rgba-primary-faint));
   width: 100%;
 }
 
