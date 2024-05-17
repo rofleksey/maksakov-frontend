@@ -1,16 +1,16 @@
-# этап сборки (build stage)
-FROM node:lts-alpine as builder
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build
+# Build
+FROM node:18-alpine as build
+WORKDIR /opt
+COPY --link package.json package-lock.json .
+RUN npm install --production=false
+COPY --link . .
+RUN npm run build && npm prune
 
-# этап production (production-stage)
-FROM node:lts-alpine
-WORKDIR /app
-RUN npm install -g http-server
-RUN apk add --no-cache curl
-COPY --from=builder /app/dist /app/dist
-EXPOSE 8080
-CMD [ "http-server", "dist" ]
+# Run
+FROM node:18-alpine
+ENV NODE_ENV=production
+ENV PORT=8080
+WORKDIR /opt
+RUN apk update && apk add --no-cache curl ca-certificates
+COPY --from=build /opt/.output /opt/.output
+CMD [ "node", ".output/server/index.mjs" ]
