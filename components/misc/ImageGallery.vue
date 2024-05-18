@@ -2,12 +2,14 @@
 import "vue3-carousel/dist/carousel.css";
 import VueEasyLightbox from "vue-easy-lightbox";
 import {computed, ref} from "vue";
+import LazyImage from "~/components/misc/LazyImage.vue";
 
 interface Props {
   images: MImage[];
   autoplay?: number;
   transition?: number;
   zoom?: boolean;
+  aspectRatio?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -49,7 +51,13 @@ function onImageClick(index: number) {
             :class="{ 'Gallery__item-container': true, zoom: props.zoom }"
             @click="onImageClick(index)"
         >
-          <img :alt="`${image.id}`" :src="image.original"/>
+          <LazyImage
+              :alt="`${image.id}`"
+              :aspect-ratio="props.aspectRatio"
+              :src="image.original"
+              class="Gallery__item-image"
+              eager
+          />
         </div>
       </Slide>
 
@@ -76,12 +84,13 @@ function onImageClick(index: number) {
   @apply fill-white
 
 .Gallery__item-container
-  @apply overflow-hidden flex justify-center items-center
+  @apply overflow-hidden flex justify-center items-start
 
 .Gallery__item-container.zoom
   @apply cursor-zoom-in
 
-.Gallery__item-container img
+
+.Gallery__item-image
   @apply h-auto w-full
 
 </style>

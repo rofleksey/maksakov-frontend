@@ -1,9 +1,7 @@
 <script lang="ts" setup>
 import Separator from "@/components/misc/SeparatorLine.vue";
 import {computed, ref} from "vue";
-import {useRouter} from "vue-router";
-
-const router = useRouter();
+import LazyImage from "~/components/misc/LazyImage.vue";
 
 interface Props {
   product: MProduct;
@@ -18,53 +16,63 @@ const priceStr = computed(() => formatPrice(props.product.price));
 </script>
 
 <template>
-  <div
-      class="ProductCard no-select"
-      @click="
-      router.push(
-        `/product?productId=${props.product.id}&categoryId=${props.categoryId}`
-      )
-    "
-      @mouseleave="curIndex = 0"
-      @mouseover="curIndex = 1"
-  >
-    <div v-if="props.product.ribbon" class="ProductCard__Ribbon">
-      {{ props.product.ribbon }}
-    </div>
-    <div class="ProductCard__img-container">
-      <img
-          v-if="props.product.previewImages.length === 1"
-          :alt="props.product.name"
-          :class="{ active: curIndex === 1 }"
-          :src="
-          props.product.previewImages[0].medium ??
-          props.product.previewImages[0].original
-        "
-      />
-      <Transition v-else name="ProductCard" tag="div">
-        <img
-            v-if="curIndex === 0"
+  <RouterLink :to="`/product?productId=${props.product.id}&categoryId=${props.categoryId}`">
+    <div class="ProductCard no-select"
+         @mouseleave="curIndex = 0"
+         @mouseover="curIndex = 1"
+    >
+      <div v-if="props.product.ribbon" class="ProductCard__Ribbon">
+        {{ props.product.ribbon }}
+      </div>
+      <div class="ProductCard__img-container">
+        <LazyImage
+            v-if="props.product.previewImages.length === 1"
             :alt="props.product.name"
+            :class="{ active: curIndex === 0 }"
             :src="
-            props.product.previewImages[0].medium ??
-            props.product.previewImages[0].original
-          "
+              props.product.previewImages[0].medium ??
+              props.product.previewImages[0].original
+            "
+            aspect-ratio="3/2"
+            class="image"
+            eager
+            height="204px"
+            width="306px"
         />
-        <img
-            v-else
-            :alt="props.product.name"
-            :src="
-            props.product.previewImages[1].medium ??
-            props.product.previewImages[1].original
-          "
-            class="active"
-        />
-      </Transition>
+        <div>
+          <LazyImage
+              :alt="props.product.name"
+              :class="{show: curIndex === 0}"
+              :src="
+                props.product.previewImages[0].medium ??
+                props.product.previewImages[0].original
+              "
+              aspect-ratio="3/2"
+              class="image"
+              eager
+              height="204px"
+              width="306px"
+          />
+          <LazyImage
+              :alt="props.product.name"
+              :class="{show: curIndex === 1, active: curIndex === 1}"
+              :src="
+                props.product.previewImages[1].medium ??
+                props.product.previewImages[1].original
+              "
+              aspect-ratio="3/2"
+              class="image"
+              eager
+              height="204px"
+              width="306px"
+          />
+        </div>
+      </div>
+      <div class="ProductCard__name">{{ props.product.name }}</div>
+      <Separator class="ProductCard__Separator"/>
+      <div class="ProductCard__price">{{ priceStr }}</div>
     </div>
-    <div class="ProductCard__name">{{ props.product.name }}</div>
-    <Separator class="ProductCard__Separator"/>
-    <div class="ProductCard__price">{{ priceStr }}</div>
-  </div>
+  </RouterLink>
 </template>
 
 <style lang="sass" scoped>
@@ -76,9 +84,12 @@ const priceStr = computed(() => formatPrice(props.product.price));
 .ProductCard__img-container
   @apply relative overflow-hidden w-[306px] h-[204px]
 
-  img
-    @apply absolute w-[306px] h-[204px] object-cover object-[50%_50%] inset-0
-    transition: opacity 250ms ease, filter 250ms ease
+  .image
+    @apply absolute w-[306px] h-[204px] object-cover object-[50%_50%] inset-0 opacity-0
+    transition: opacity 333ms ease, filter 333ms ease
+
+    &.show
+      @apply opacity-100
 
     &.active
       @apply brightness-[130%]

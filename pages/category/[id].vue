@@ -26,6 +26,7 @@ onMounted(() => {
           :autoplay="category?.images?.length > 1 ? 5000 : 0"
           :images="category?.images ?? []"
           :transition="1000"
+          aspect-ratio="3/2"
           class="CategoryView__Gallery"
       />
       <Title class="CategoryView__Title" light>

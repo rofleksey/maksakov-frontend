@@ -143,6 +143,10 @@ export const useCartStore = defineStore("cart", () => {
     );
   }
 
+  onNuxtReady(() => {
+    restoreCart().catch((e) => console.log(e))
+  })
+
   return {
     cart,
     isOpen,

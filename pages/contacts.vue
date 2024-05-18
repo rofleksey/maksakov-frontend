@@ -20,6 +20,7 @@ onMounted(() => {
           :autoplay="misc?.contactsImages?.length > 1 ? 5000 : 0"
           :images="misc?.contactsImages ?? []"
           :transition="1000"
+          aspect-ratio="3/2"
           class="ContactsView__Gallery"
       />
       <Markdown

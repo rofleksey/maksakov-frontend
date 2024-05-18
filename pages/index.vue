@@ -8,8 +8,8 @@ import Separator from "@/components/misc/SeparatorLine.vue";
 import Markdown from "@/components/misc/MarkDown.vue";
 import Footer from "@/components/footer/SiteFooter.vue";
 
-const {data: categories, error: categoriesError} = await useFetchCategories()
-const {data: misc, error: miscError} = await useFetchMisc()
+const {data: categories} = await useFetchCategories()
+const {data: misc} = await useFetchMisc()
 
 onMounted(() => {
   window.scrollTo({top: 0, behavior: "smooth"});

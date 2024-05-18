@@ -2,8 +2,8 @@
 import Title from "@/components/misc/SiteTitle.vue";
 import {onMounted} from "vue";
 import Separator from "@/components/misc/SeparatorLine.vue";
-import CategoryButton from "@/components/misc/CategoryButton.vue";
 import Footer from "@/components/footer/SiteFooter.vue";
+import CategoryButtonBig from "~/components/misc/CategoryButtonBig.vue";
 
 const {data: categories} = await useFetchCategories()
 
@@ -20,13 +20,12 @@ onMounted(() => {
     <div class="CatalogView__CategoryContainer">
       <Separator class="CatalogView__Title-separator"/>
       <div class="CatalogView__CategoryList">
-        <CategoryButton
+        <CategoryButtonBig
             v-for="category in categories"
             :id="category.id"
             :key="category.id"
             :img="category.imageMain.large ?? category.imageMain.original"
             :name="category.name"
-            big
         />
       </div>
     </div>

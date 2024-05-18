@@ -1,24 +1,29 @@
 <script lang="ts" setup>
 
+import LazyImage from "~/components/misc/LazyImage.vue";
+
 interface Props {
   id: number;
   name: string;
   img: string;
-  big?: boolean;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  big: false,
-});
+const props = defineProps<Props>();
 </script>
 
 <template>
   <NuxtLink :to="`/category/${props.id}`" class="w-full">
     <div
-        :class="{ big: props.big }"
         class="CategoryButton flex flex-row justify-start items-center text-center text-sm w-full hover:bg-white hover:tracking-[1px]">
       <div class="CategoryButton__img-container">
-        <img :alt="props.name" :src="props.img"/>
+        <LazyImage
+            :alt="props.name"
+            :src="props.img"
+            aspect-ratio="3/2"
+            eager
+            height="259px"
+            width="391px"
+        />
       </div>
       <div class="flex-grow">{{ props.name }}</div>
     </div>
@@ -31,29 +36,17 @@ const props = withDefaults(defineProps<Props>(), {
   color: var(--color-secondary)
   background-color: var(--color-banner)
   transition: background-color 0.25s ease 0s, letter-spacing 0.4s ease 0s
+  @apply flex-col content-center text-2xl
 
   &:hover
     img
-      transform: scale(1.2)
-
-  &.big
-    @apply flex-col content-center text-2xl
-
-    &:hover
-      img
-        transform: scale(1.1)
-
-    .CategoryButton__img-container
-      @apply w-[391px] h-[259px] #{!important}
-
-    img
-      @apply w-[391px] h-[259px] #{!important}
+      transform: scale(1.1)
 
 .CategoryButton__img-container
-  @apply w-[57px] h-[37px] overflow-hidden
+  @apply w-[391px] h-[259px] overflow-hidden
 
 img
-  @apply w-[57px] h-[37px] object-cover
+  @apply w-[391px] h-[259px] object-cover
   transition: transform 0.4s ease 0s
   backface-visibility: hidden
   transform-style: preserve-3d

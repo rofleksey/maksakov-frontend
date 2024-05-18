@@ -113,6 +113,7 @@ onMounted(() => {
         <Gallery
             :images="galleryImages"
             :zoom="true"
+            aspect-ratio="3/2"
             class="ProductView__Gallery"
         />
         <div class="ProductView__Info">

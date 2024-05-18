@@ -7,13 +7,23 @@
 </template>
 
 <script lang="ts" setup>
-// TODO: fix header scroll sometimes (catalog)
+// TODO: fix mobile links
+// TODO: header select predicates
+// TODO: 404 page
 // TODO: fix flicker
 // TODO: fix links
 // TODO: sitemap
 // TODO: check localstorage
+// TODO: fix product hover
 // TODO: test order
 // TODO: improve email
+// TODO: always open comment
+// TODO: validate form
+// TODO: handle errors
+// TODO: test slow network
+// TODO: preload images
+// TODO: spinner images
+// TODO: prevent cart reset
 
 function updateVhVar() {
   const doc = document.documentElement;
