@@ -6,10 +6,10 @@ import {fetchCategoriesEager, fetchProductsEager} from "~/server/utils/api";
 
 export default defineSitemapEventHandler(async () => {
   const result: SitemapUrlInput[] = [
-    asSitemapUrl('https://maskakov.com'),
-    asSitemapUrl('https://maskakov.com/contacts'),
-    asSitemapUrl('https://maskakov.com/delivery'),
-    asSitemapUrl('https://maskakov.com/catalog'),
+    asSitemapUrl('https://maksakov.com'),
+    asSitemapUrl('https://maksakov.com/contacts'),
+    asSitemapUrl('https://maksakov.com/delivery'),
+    asSitemapUrl('https://maksakov.com/catalog'),
   ];
 
   const categories = await fetchCategoriesEager();
@@ -27,9 +27,9 @@ export default defineSitemapEventHandler(async () => {
   }))
 
   categoriesAndProducts.forEach((it) => {
-    result.push(`https://maskakov.com/category/${it.category.id}`);
+    result.push(`https://maksakov.com/category/${it.category.id}`);
     it.products.forEach((product: MProduct) => {
-      result.push(`https://maskakov.com/product/?id=${product.id}&categoryId=${it.category.id}`)
+      result.push(`https://maksakov.com/product/?id=${product.id}&categoryId=${it.category.id}`)
     })
   })
 
