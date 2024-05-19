@@ -4,6 +4,7 @@ import {useRouter} from "vue-router";
 import CartCounter from "@/components/cart/CartCounter.vue";
 import IconClose from "@/components/icons/IconClose.vue";
 import {type CartItem, useCartStore} from "~/stores/cart-store";
+import LazyImage from "~/components/misc/LazyImage.vue";
 
 const router = useRouter();
 const cartStore = useCartStore();
@@ -31,7 +32,9 @@ function gotoItemPage() {
 <template>
   <div class="CartCardSmall no-select">
     <div class="CartCardSmall__ImgContainer" @click="gotoItemPage">
-      <img
+      <LazyImage
+          aspect-ratio="3/2"
+          class="image"
           :alt="`${props.item.product.name} image`"
           :src="
           props.item.product.previewImages[0].small ??
@@ -73,7 +76,7 @@ function gotoItemPage() {
   margin-right: 10px
   cursor: pointer
 
-  img
+  .image
     width: 100%
     height: 100%
     object-fit: cover

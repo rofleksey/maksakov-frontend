@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {computed, ref} from "vue";
+import {computed} from "vue";
 import IconNotes from "@/components/icons/IconNotes.vue";
 import TextField from "@/components/misc/TextField.vue";
 import {useCartStore} from "~/stores/cart-store";
@@ -9,6 +9,7 @@ const notes = computed(() => cartStore.notes);
 const notesActive = computed(() => notes.value.trim().length > 0);
 
 function onNotesInput(e: any) {
+  console.log('onNotesInput', e)
   cartStore.setNotes(e.target.value);
 }
 </script>
@@ -22,7 +23,7 @@ function onNotesInput(e: any) {
     </div>
     <div class="CartNotes__Edit">
       <TextField
-          :value="notes"
+          :text="notes"
           placeholder="Пожалуйста, укажите ваши контакты и особые пожелания / комментарии здесь"
           @input="onNotesInput"
       />

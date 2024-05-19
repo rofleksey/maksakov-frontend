@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 interface Props {
-  placeholder: string;
-  value: string;
+  text: string;
+  placeholder?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -15,10 +15,8 @@ const emit = defineEmits(["input"]);
     <textarea
         class="TextField__TextArea"
         :placeholder="props.placeholder"
-        :value="props.value"
-        @input="(e) => emit('input', e)"
-    >
-    </textarea>
+        :value="props.text"
+        @input="(e) => emit('input', e)"/>
   </div>
 </template>
 
@@ -35,5 +33,5 @@ textarea::placeholder
   opacity: 0.5
 
 textarea:focus
-  outline: 0
+  outline: none
 </style>

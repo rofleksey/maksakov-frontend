@@ -13,7 +13,6 @@
 // TODO: sitemap
 // TODO: test order
 // TODO: improve email
-// TODO: validate form
 // TODO: handle errors
 // TODO: test slow network
 // TODO: preload images

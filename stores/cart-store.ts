@@ -30,10 +30,10 @@ export const useCartStore = defineStore("cart", () => {
   const cart = useState<CartItem[]>('cartStoreCart', () => []);
   const isOpen = useState('cartStoreIsOpen', () => false);
   const deliveryType = useState<DeliveryType>('cartStoreDeliveryType', () => DeliveryType.COURIER);
-  const notes = useState('cartStoreNotes', () => "");
-  const name = useState('cartStoreName', () => "");
-  const phone = useState('cartStorePhone', () => "");
-  const email = useState('cartStoreEmail', () => "");
+  const notes = useState('cartStoreNotes', () => '');
+  const name = useState('cartStoreName', () => '');
+  const phone = useState('cartStorePhone', () => '');
+  const email = useState('cartStoreEmail', () => '');
 
   function add(product: MProduct, categoryId: number) {
     const item = cart.value.find((it) => it.product.id === product.id);
@@ -97,11 +97,14 @@ export const useCartStore = defineStore("cart", () => {
   }
 
   function saveCart() {
+    if (!process.client) {
+      return
+    }
     const serializedCart: SerializedCart = {
-      notes: notes.value,
-      name: name.value,
-      phone: phone.value,
-      email: email.value,
+      notes: notes.value.trim(),
+      name: name.value.trim(),
+      phone: phone.value.trim(),
+      email: email.value.trim(),
       deliveryType: deliveryType.value,
       version: CART_VERSION,
       items: cart.value.map((item) => ({
@@ -114,6 +117,9 @@ export const useCartStore = defineStore("cart", () => {
   }
 
   async function restoreCart() {
+    if (!process.client) {
+      return
+    }
     if (cart.value.length !== 0) {
       return;
     }
@@ -126,10 +132,10 @@ export const useCartStore = defineStore("cart", () => {
       saveCart();
       return;
     }
-    name.value = serializedCart.name;
-    email.value = serializedCart.email;
-    phone.value = serializedCart.phone;
-    notes.value = serializedCart.notes;
+    name.value = serializedCart.name.trim();
+    email.value = serializedCart.email.trim();
+    phone.value = serializedCart.phone.trim();
+    notes.value = serializedCart.notes.trim();
     deliveryType.value = serializedCart.deliveryType;
     cart.value = await Promise.all(
       serializedCart.items.map(async (serializedItem) => {
@@ -165,6 +171,5 @@ export const useCartStore = defineStore("cart", () => {
     setName,
     setPhone,
     setEmail,
-    restoreCart,
   };
 });

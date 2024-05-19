@@ -8,6 +8,8 @@ import {useRouter} from "vue-router";
 import Footer from "@/components/footer/SiteFooter.vue";
 import TextField from "@/components/misc/TextField.vue";
 import {DeliveryType} from "~/utils/api_types";
+import validatePhone from 'phone';
+import * as EmailValidator from 'email-validator';
 
 const {notify} = useNotification();
 const router = useRouter();
@@ -66,6 +68,7 @@ function onSubmit() {
   if (submitLoading.value) {
     return;
   }
+
   if (clientName.value.trim().length === 0) {
     notify({
       title: 'Неверно заполнена форма',
@@ -82,6 +85,14 @@ function onSubmit() {
     })
     return;
   }
+  if (!validatePhone(clientPhone.value.trim(), {country: 'RUS'}).isValid) {
+    notify({
+      title: 'Неверно заполнена форма',
+      text: 'Указан неверный номер телефона',
+      type: 'error'
+    })
+    return;
+  }
   if (clientEmail.value.trim().length === 0) {
     notify({
       title: 'Неверно заполнена форма',
@@ -90,13 +101,29 @@ function onSubmit() {
     })
     return;
   }
+  if (!EmailValidator.validate(clientEmail.value.trim())) {
+    notify({
+      title: 'Неверно заполнена форма',
+      text: 'Указан неверный email',
+      type: 'error'
+    })
+    return;
+  }
+  if (cart.value.length === 0) {
+    notify({
+      title: 'Не удалось создать заказ',
+      text: 'Корзина пуста',
+      type: 'error'
+    })
+    return;
+  }
 
   submitLoading.value = true;
   sendOrder({
-    notes: notes.value,
-    name: clientName.value,
-    phone: clientPhone.value,
-    email: clientEmail.value,
+    notes: notes.value.trim(),
+    name: clientName.value.trim(),
+    phone: clientPhone.value.trim(),
+    email: clientEmail.value.trim(),
     deliveryType: deliveryType.value,
     items: cart.value.map((item) => ({
       id: item.product.id,
@@ -160,19 +187,19 @@ function onSubmit() {
           <div>{{ totalPriceStr }}</div>
         </div>
         <TextField
-            :value="clientName"
+            :text="clientName"
             class="CartView__TextField"
             placeholder="Имя ⃰"
             @input="onNameInput"
         />
         <TextField
-            :value="clientPhone"
+            :text="clientPhone"
             class="CartView__TextField"
             placeholder="Телефон ⃰"
             @input="onPhoneInput"
         />
         <TextField
-            :value="clientEmail"
+            :text="clientEmail"
             class="CartView__TextField"
             placeholder="Электронная почта ⃰"
             @input="onEmailInput"
