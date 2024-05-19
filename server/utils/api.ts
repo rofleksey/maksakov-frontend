@@ -48,30 +48,6 @@ export async function fetchProductsEager(categoryId: number): Promise<MProduct[]
   }));
 }
 
-export async function fetchProductEager(id: number): Promise<MProduct> {
-  const data = await $fetch<StrapiSingleton<StrapiProductAttr>>(`${BASE_API_URL}/products/${id}`, {
-    query: {
-      publicationState: "live",
-      populate: "*",
-    },
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  return {
-    id: data.data.id,
-    name: data.data.attributes.name,
-    description: data.data.attributes.description,
-    ribbon: data.data.attributes.ribbon,
-    price: data.data.attributes.price,
-    priceCrossed: data.data.attributes.price_crossed,
-    galleryImages:
-      data.data.attributes.images_gallery.data?.map(mapStrapiImage) ?? [],
-    previewImages: data.data.attributes.images_preview.data.map(mapStrapiImage),
-  };
-}
-
 export async function fetchCategoriesEager(): Promise<MCategory[]> {
   const data = await $fetch<StrapiArray<StrapiCategoryAttr>>(
     `${BASE_API_URL}/product-categories`,
