@@ -1,4 +1,4 @@
-import SaleImg from "@/assets/sale.jpg";
+import SaleImg from "~/assets/sale.jpg";
 import {FetchError} from "ofetch";
 import type {MMisc, MProduct} from "~/utils/api_types";
 import type {ComputedRef} from "vue";
@@ -156,6 +156,34 @@ export async function useFetchProducts(categoryId: number): Promise<ApiFetchResu
     data: dataComputed,
     error,
   }
+}
+
+export async function fetchProductsEager(categoryId: number): Promise<MProduct[]> {
+  if (categoryId === SALE_CATEGORY_ID) {
+    return fetchSaleEager();
+  }
+
+  const data = await $fetch<StrapiSingleton<StrapiCategoryAttr>>(`${BASE_API_URL}/product-categories/${categoryId}`, {
+    query: {
+      publicationState: "live",
+      populate: "deep,3",
+    },
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return data.data.attributes.products.data.map((product) => ({
+    id: product.id,
+    name: product.attributes.name,
+    description: product.attributes.description,
+    ribbon: product.attributes.ribbon,
+    price: product.attributes.price,
+    priceCrossed: product.attributes.price_crossed,
+    galleryImages:
+      product.attributes.images_gallery.data?.map(mapStrapiImage) ?? [],
+    previewImages: product.attributes.images_preview.data.map(mapStrapiImage),
+  }));
 }
 
 export async function useFetchCategory(id: number): Promise<ApiFetchResult<MCategory>> {
@@ -320,4 +348,31 @@ async function useFetchSale(): Promise<ApiFetchResult<MProduct[]>> {
     data: dataComputed,
     error,
   }
+}
+
+async function fetchSaleEager(): Promise<MProduct[]> {
+  const data = await $fetch<StrapiSingleton<StrapiSaleAttr>>(
+    `${BASE_API_URL}/sale`,
+    {
+      query: {
+        publicationState: "live",
+        populate: "deep,3",
+      },
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  return data.data.attributes.products.data.map((product) => ({
+    id: product.id,
+    name: product.attributes.name,
+    description: product.attributes.description,
+    ribbon: product.attributes.ribbon,
+    price: product.attributes.price,
+    priceCrossed: product.attributes.price_crossed,
+    galleryImages:
+      product.attributes.images_gallery.data?.map(mapStrapiImage) ?? [],
+    previewImages: product.attributes.images_preview.data.map(mapStrapiImage),
+  }));
 }

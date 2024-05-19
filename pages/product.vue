@@ -8,6 +8,7 @@ import AddToCartButton from "@/components/cart/AddToCartButton.vue";
 import Markdown from "@/components/misc/MarkDown.vue";
 import Footer from "@/components/footer/SiteFooter.vue";
 import BreadcrumbBack from "@/components/misc/BreadcrumbBack.vue";
+import {DEFAULT_DESCRIPTION, DEFAULT_TITLE} from "~/utils/misc";
 
 const route = useRoute();
 const productId = computed(() => Number(route.query.productId));
@@ -16,8 +17,9 @@ const categoryId = computed(() => Number(route.query.categoryId));
 const {data: category} = await useFetchCategory(categoryId.value)
 const {data: products} = await useFetchProducts(categoryId.value)
 
-const product = useState<MProduct | null>('productPageProduct', () => null);
-const productIndex = useState<number>('productPageIndex', () => -1);
+const product = useState<MProduct | null>('productPageProduct', () => products.value?.find((p) => p.id === productId.value) || null);
+const productIndex = useState<number>('productPageIndex', () => products.value?.findIndex((p) => p.id === productId.value) ?? -1);
+
 
 watch(productId, () => {
   const newProduct = products.value?.find((p) => p.id === productId.value) || null
@@ -40,6 +42,7 @@ watch(productId, () => {
 }, {
   immediate: true
 })
+
 
 const prevProductLink = computed(() => {
   if (productIndex.value === -1 || productIndex.value === 0) {
@@ -85,6 +88,24 @@ const breadcrumbSegments = computed(() => [
     path: "",
   },
 ]);
+
+const title = product.value ? `Максаков - ${useCapitalize(product.value.name)}` : DEFAULT_TITLE
+const description = product.value ? `Максаков - ${product.value.description!.substring(0, Math.min(150, product.value.description!.length)) + '...'}` : DEFAULT_DESCRIPTION
+const seoImage = galleryImages.value.length > 0 ? galleryImages.value[0].large : '/apple-touch-icon.png'
+
+useSeoMeta({
+  author: 'МАКСАКОВ',
+  ogLocale: 'ru_RU',
+  title: title,
+  description: description,
+  ogTitle: title,
+  ogDescription: description,
+  ogImage: seoImage,
+  twitterTitle: title,
+  twitterDescription: description,
+  twitterImage: seoImage,
+  twitterCard: 'summary_large_image'
+})
 
 onMounted(() => {
   window.scrollTo({top: 0, behavior: "smooth"});

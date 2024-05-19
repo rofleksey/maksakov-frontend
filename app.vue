@@ -14,13 +14,34 @@
 // TODO: test order
 // TODO: improve email
 // TODO: handle errors
-// TODO: test slow network
-// TODO: preload images
 // TODO: feedback button + notification
 // TODO: yandex and google SEO
 // TODO: yandex metrika
 // TODO: add health endpoint
 // TODO: send email to me as well
+
+import {DEFAULT_DESCRIPTION, DEFAULT_TITLE} from "~/utils/misc";
+
+useSeoMeta({
+  author: 'МАКСАКОВ',
+  ogLocale: 'ru_RU',
+  title: DEFAULT_TITLE,
+  description: DEFAULT_DESCRIPTION,
+  ogTitle: DEFAULT_TITLE,
+  ogDescription: DEFAULT_DESCRIPTION,
+  ogImage: '/apple-touch-icon.png',
+  ogUrl: 'https://maksakov.com/',
+  twitterTitle: DEFAULT_TITLE,
+  twitterDescription: DEFAULT_DESCRIPTION,
+  twitterImage: '/apple-touch-icon.png',
+  twitterCard: 'summary'
+})
+
+useHead({
+  htmlAttrs: {
+    lang: 'ru'
+  }
+})
 
 function updateVhVar() {
   const doc = document.documentElement;

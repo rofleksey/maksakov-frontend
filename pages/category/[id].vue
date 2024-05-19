@@ -6,12 +6,30 @@ import ProductCard from "~/components/misc/ProductCard.vue";
 import Gallery from "~/components/misc/ImageGallery.vue";
 import Footer from "~/components/footer/SiteFooter.vue";
 import Skeleton from "~/components/misc/Skeleton.vue";
+import {DEFAULT_DESCRIPTION, DEFAULT_TITLE} from "~/utils/misc";
 
 const route = useRoute();
 const categoryId = computed(() => Number(route.params.id));
 
 const {data: category} = await useFetchCategory(categoryId.value)
 const {data: products} = await useFetchProducts(categoryId.value)
+
+const title = category.value ? `Максаков - ${useCapitalize(category.value.name)}` : DEFAULT_TITLE
+const seoImage = category.value?.images[0]?.large ?? '/apple-touch-icon.png'
+
+useSeoMeta({
+  author: 'МАКСАКОВ',
+  ogLocale: 'ru_RU',
+  title: title,
+  description: DEFAULT_DESCRIPTION,
+  ogTitle: title,
+  ogDescription: DEFAULT_DESCRIPTION,
+  ogImage: seoImage,
+  twitterTitle: title,
+  twitterDescription: DEFAULT_DESCRIPTION,
+  twitterImage: seoImage,
+  twitterCard: 'summary'
+})
 
 onMounted(() => {
   window.scrollTo({top: 0, behavior: "smooth"});
