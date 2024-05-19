@@ -8,8 +8,6 @@ const cartStore = useCartStore();
 const notes = computed(() => cartStore.notes);
 const notesActive = computed(() => notes.value.trim().length > 0);
 
-const notesOpen = ref(false);
-
 function onNotesInput(e: any) {
   cartStore.setNotes(e.target.value);
 }
@@ -17,17 +15,13 @@ function onNotesInput(e: any) {
 
 <template>
   <div class="CartNotes">
-    <div
-        :class="{active: notesActive}"
-        class="CartNotes__Button no-select"
-        @click="notesOpen = !notesOpen"
-    >
+    <div :class="{active: notesActive}"
+         class="CartNotes__Button no-select">
       <IconNotes class="CartNotes__Icon"/>
       Комментарий
     </div>
     <div class="CartNotes__Edit">
       <TextField
-          :open="notesOpen"
           :value="notes"
           placeholder="Пожалуйста, укажите ваши контакты и особые пожелания / комментарии здесь"
           @input="onNotesInput"
