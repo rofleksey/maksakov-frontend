@@ -40,7 +40,10 @@ useSeoMeta({
 useHead({
   htmlAttrs: {
     lang: 'ru'
-  }
+  },
+  meta: [
+    {name: 'yandex-verification', content: '17dadd6108bd6b56'}
+  ],
 })
 
 function updateVhVar() {
