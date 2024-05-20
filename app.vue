@@ -10,8 +10,6 @@
 // TODO: header select predicates
 // TODO: 404 page
 // TODO: fix flicker
-// TODO: sitemap
-// TODO: test order
 // TODO: improve email
 // TODO: handle errors
 // TODO: feedback button + notification
@@ -19,6 +17,8 @@
 // TODO: yandex metrika
 // TODO: add health endpoint
 // TODO: send email to me as well
+// TODO: fix gallery
+// TODO: fix cart drawer photos
 
 import {DEFAULT_DESCRIPTION, DEFAULT_TITLE} from "~/utils/misc";
 
