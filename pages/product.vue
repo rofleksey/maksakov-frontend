@@ -89,9 +89,9 @@ const breadcrumbSegments = computed(() => [
   },
 ]);
 
-const title = product.value ? `Максаков - ${useCapitalize(product.value.name)}` : DEFAULT_TITLE
-const description = product.value ? `Максаков - ${product.value.description!.substring(0, Math.min(150, product.value.description!.length)) + '...'}` : DEFAULT_DESCRIPTION
-const seoImage = galleryImages.value.length > 0 ? galleryImages.value[0].large : '/apple-touch-icon.png'
+const title = computed(() => product.value ? `Максаков - ${useCapitalize(product.value.name)}` : DEFAULT_TITLE)
+const description = computed(() => product.value ? `Максаков - ${(product.value.description?.substring(0, Math.min(150, product.value.description!.length)) ?? '') + '...'}` : DEFAULT_DESCRIPTION)
+const seoImage = computed(() => galleryImages.value.length > 0 ? galleryImages.value[0].large : '/apple-touch-icon.png')
 
 useSeoMeta({
   author: 'МАКСАКОВ',
