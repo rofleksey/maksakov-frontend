@@ -1,6 +1,6 @@
 const token = 'cf6badea62d205164f0635920df6d5d2c20ed321f1f5791be19dbf2efe12af745dd1ac62e803ff35eb0fe6bc27cc056ecf4638bf07ae5855b2ae9bb202d619b2d44ee4d84b3f21bee6ad83347b452ad9cd0134c068623f8ca08c65b268360344bc8770796eb015d7ad8699e439ec65a772a458ae7e93da9231041901d8de462e';
 
-const BASE_URL = 'https://maksakov.com/cms'
+const BASE_URL = 'https://cms.maksakov.com'
 const BASE_API_URL = `${BASE_URL}/api`;
 
 function mapStrapiImage(image: StrapiItem<StrapiImageAttr>): MImage {
